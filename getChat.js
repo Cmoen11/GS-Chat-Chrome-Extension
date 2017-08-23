@@ -82,9 +82,9 @@ function insertAtCaret(areaId, text) {
 }
 
 $('#quote_start').click(function () {
-    $('textarea#textareaid').append('«');
+    $('#textareaid').val($('#textareaid').val() +'«');
 });
 
 $('#quote_end').click(function () {
-    $('textarea#textareaid').append('»');
+    $('#textareaid').val($('#textareaid').val() +'»');
 });
