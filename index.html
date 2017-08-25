@@ -26,16 +26,37 @@
             max-width: 400px;
         }
         div#chat_room{
-           width: 100%;
-            height: 300px;
+           width: 70%;
+            height: 270px;
             border: 1px solid black;
             overflow: scroll;
             overflow-y:scroll;
             overflow-x:hidden;
+            float: left;
         }
         div#chat_input_field {
             margin-top:5px;
+            width:70%;
+            float:left;
         }
+        div#book{
+            width:28%;
+            float:right;
+            position: relative;
+            top:-25px;
+            max-height: 410px;
+            font-size: 10px;
+            overflow-y: scroll;
+
+        }
+        div#book .formel {
+            margin-top:5px;
+            cursor: pointer;
+        }
+        div#book .formel:hover {
+            color:lavender;
+        }
+
 
 
     </style>
@@ -49,13 +70,21 @@
     <!--<script src="index.js"></script>-->
 </head>
 <body>
-<div style="width:700px; padding:20px;">
-    <h2 style="text-align: center">GS Chat v2: Storsalen</h2>
+<div style="width:730px; padding:20px; overflow-x:hidden !important;">
+    <h2 style="text-align: center">GS Chat v1.3: Storsalen</h2>
+    <div id="book"><h3>Formell bok</h3> <i>Trykk på formelen for å legge den til i chatten.</i><br><br></div>
+    <div id="chat_room">Du er nødt til å være logget inn for å kunne lese chatten.</div> <!-- this will be the actual chat being displayed. -->
 
-    <div id="chat_room">Husk Ã¥ logg inn fÃ¸r du kan se innholdet.</div> <!-- this will be the actual chat being displayed. -->
     <div id="chat_input_field"><textarea id="textareaid" placeholder="Skriv noe" style="width: 100%; height: 100px"></textarea></div>
-    <button id="quote_start">Â«</button>
-    <button id="quote_end">Â»</button>
+
+    <!-- buttons -->
+</div>
+<div style="width:100%; position: relative; bottom:0px;">
+    <button id="quote_start">« - quote start</button>
+    <button id="quote_end">» - quote slutt</button>
+    <button id="quote_both">«» - begge quotes</button>
+    <button id="spell_book">📓 - Åpne formellbok</button>
+    <button id="wand_book">📓 - Åpne tryllestavbok</button>
 </div>
 <script src="getChat.js"></script>
 <div id="status"></div>

@@ -1,0 +1,394 @@
+[
+  {
+    "spell": "Absurdulum",
+    "desc": "Formel som tvinger en hambuse til å skifte til en form som personen finner morsom. På denne måten blir hambusen ufarliggjort, og gjør det mulig for trollmannen eller heksa å tilintetgjøre den."
+  },
+  {
+    "spell": "Apporto",
+    "desc": "Tilkallingsformel som henter en navngitt gjenstand på magisk vis til den som uttaler formelen. "
+  },
+  {
+    "spell": "Aquamenti",
+    "desc": "Formel som får tryllestaven til å sprute vann."
+  },
+  {
+    "spell": "Alohomora",
+    "desc": "Formel som kan brukes til å åpne låste dører."
+  },
+  {
+    "spell": "Antiantagon",
+    "desc": "En formell som brukes til å sikre et område. Hermine brukte denne til å sikre teltet i Dødstalisamene."
+  },
+  {
+    "spell": "Avada Kadavra",
+    "desc": "En utilgivelig forbannelse(Ikke lov å bruke uten særskilt tilatelse av administrator). Brukes til å drepe uten å legge fra seg merke"
+  },
+  {
+    "spell": "Avís",
+    "desc": "Trylleformel som skyter fugler ut av tryllestaven."
+  },
+  {
+    "spell": "Befalio",
+    "desc": "En utilgivelig forbannelse(Ikke lov å bruke uten særskilt tilatelse av administrator). Den som blir utsatt for denne forbannelsen, blir viljeløst styrt av den som har kastet forbannelsen. Når forbannelsen er hevet, husker ikke offeret noe som helst fra den perioden forbannelsen var virksom."
+  },
+  {
+    "spell": "Bindio",
+    "desc": "Bindio får tau til å surre seg rundt noe eller noen. Den kan ikke binde sammen ting, men den kan brukes til å kvele personer eller magiske vesner. "
+  },
+  {
+    "spell": "Bloccus gompus",
+    "desc": "Brukes til å avvise gomper fra ting de ikke burde se"
+  },
+  {
+    "spell": "Blussio",
+    "desc": "Formel som kan brukes til å «tegne med ild». Der formelen blir brukt dannes det et merke som varer i lang tid, men flammen brenner ikke på gjenstanden slik at den blir ødelagt."
+  },
+  {
+    "spell": "Bombarda",
+    "desc": "Sprenger eller lager hull i stein"
+  },
+  {
+    "spell": "Brekkivrakio",
+    "desc": "Formelen brukes til å ødelegge gjenstander."
+  },
+  {
+    "spell": "Contrahexia",
+    "desc": "En av mange avstøtningsheksinger"
+  },
+  {
+    "spell": "Martyrio",
+    "desc": "En utilgivelig forbannelse(Ikke lov å bruke uten særskilt tilatelse av administrator). En formel som gjør at 'offeret' får pine i hele kroppen, f.eks hodepine."
+  },
+  {
+    "spell": "Demaskerio Specialis",
+    "desc": "Formel som avslører hvilken som helst hemmelighet ved en magisk gjenstand."
+  },
+  {
+    "spell": "Depressio",
+    "desc": "Sprenge... Formelen ble brukt i Harry Potter og Dødstalismanene da Hermine sprengte et hull i Lunekjærs hjem."
+  },
+  {
+    "spell": "Dimendio",
+    "desc": "Den får ting til å forminskes."
+  },
+  {
+    "spell": "Disintegratio",
+    "desc": "Denne er brukt til å få større ting til å eksplodere"
+  },
+  {
+    "spell": "Eliminatus",
+    "desc": "Fjerner bildet av forrige magi utført som har blitt fremkalt ved Hexohistorico-formelen. Kan muligens brukes til å fjerne andre magiske effekter også."
+  },
+  {
+    "spell": "Exitarmus",
+    "desc": "Avvæpningsformelen. Formelen avvæpner en person ved rive det de holder ut av hendene på dem."
+  },
+  {
+    "spell": "Explosio",
+    "desc": "Denne trylleformelen knuser og ødelegger det den treffer."
+  },
+  {
+    "spell": "Falnerio",
+    "desc": "En formel som senker noe."
+  },
+  {
+    "spell": "Feraverto",
+    "desc": "Formelen forvandler dyr til kopper."
+  },
+  {
+    "spell": "Fiendfyre",
+    "desc": "Formelen som starter eller lager satanstunger, en ild som er umulig å stoppe, og som ødelegger alt på sin vei."
+  },
+  {
+    "spell": "Finite Incantatem",
+    "desc": "En trylleformel som brukes for å avslutte virkningene av en annen trylleformel."
+  },
+  {
+    "spell": "Fleccus veccus",
+    "desc": "Formel som fjerner skitt."
+  },
+  {
+    "spell": "Flyttus",
+    "desc": "En formel som brukes for å opprette en flyttnøkkel."
+  },
+  {
+    "spell": "Forduftio",
+    "desc": "En formel som får ting til å forsvinne."
+  },
+  {
+    "spell": "Forglemmiarium",
+    "desc": "En glemmeformel som får en person til å glemme noe."
+  },
+  {
+    "spell": "Forvento Vergum",
+    "desc": "Denne formelen maner frem en skytsverge, en slags manifestasjon av ens glade følelser som beskytter og driver bort onde skapninger, for eksempel desperanter."
+  },
+  {
+    "spell": "Formørkio",
+    "desc": "En formel som får gir et bind for øynene til portretter. "
+  },
+  {
+    "spell": "Forflokio",
+    "desc": "Fungerer litt annerledes enn Forglemmiarum. Så istedenfor å få noen til å glemme noe, inplanterer den falsk informasjon og falske tanker inn i offerets hukommelse."
+  },
+  {
+    "spell": "Forstummio",
+    "desc": "Får et dyr eller en person til å bli stille."
+  },
+  {
+    "spell": "Grandikvisikus",
+    "desc": "En formel som får store kviser til å bryte ut på den som rammes"
+  },
+  {
+    "spell": "Gravvecchio",
+    "desc": "En formel som graver/sprenger plass i fjell."
+  },
+  {
+    "spell": "Hardio",
+    "desc": "En formel som brukes for gjøre bløte ting til harde som stein."
+  },
+  {
+    "spell": "Hexohistorico",
+    "desc": "En formel som kan brukes for å sjekke hvilken trylleformel som sist ble utført av en tryllestav. Når denne formelen blir kastet på en tryllestav, vil den vise fram et ekko av formelen den sist ble brukt til å utføre."
+  },
+  {
+    "spell": "Humanum exponerio",
+    "desc": "En formel som brukes for å sjekke om det finnes mennesker i nærheten."
+  },
+  {
+    "spell": "Hindrio",
+    "desc": "Formelen hindrer folk fra å løpe fra en."
+  },
+  {
+    "spell": "Lacarnum Inflamare",
+    "desc": "Lar det komme ut blå flamme fra tuppen av staven."
+  },
+  {
+    "spell": "Lamstivosløvus",
+    "desc": "En lammeformel som slår et annet vesen bevisstløst. Offeret blir lammet på stedet."
+  },
+  {
+    "spell": "Levitacorpu",
+    "desc": "En ikke-verbal sveveformel. Når denne formelen kastes på en person blir personen heist opp i lufta etter ankelen."
+  },
+  {
+    "spell": "Liberacorpus",
+    "desc": "Motformelen for virkningen av Levitacorpus."
+  },
+  {
+    "spell": "Locomotor Mortis",
+    "desc": "Denne formelen låser sammen offerets bein."
+  },
+  {
+    "spell": "Locomotor simulacra",
+    "desc": "Professor McSnurp brukte denne formelen for å vekke alle statuer og rustninger til å bevege seg, det kommer fra latin og betyr bevegelsesapperatere bilde"
+  },
+  {
+    "spell": "Lumos",
+    "desc": "Denne formelen får tuppen på en tryllestav til å lyse slik at den kan brukes som en lommelykt eller fakkel."
+  },
+  {
+    "spell": "Lumos solem",
+    "desc": "Denne formelen gjør at det kommer sollys ut av stavtippen."
+  },
+  {
+    "spell": "Lumos maxima",
+    "desc": "Denne formelen sender en lysende kule ut av stavspissen som fungerer på samme måte som lumos, men med sterkere lys."
+  },
+  {
+    "spell": "Martyrio",
+    "desc": "En utilgivelig forbannelse(Ikke lov å bruke uten særskilt tilatelse av administrator). Den fremkaller ekstremt store smerter hos offeret uten å etterlate noen spor. Det er vist i bøkene at forlenget bruk kan føre til sinnssykdom."
+  },
+  {
+    "spell": "Membranus",
+    "desc": "En formel som gjør en overflate vannavstøtende, derav navnet membranus"
+  },
+  {
+    "spell": "Misminne-formelen",
+    "desc": "Skulle det verste skje, og en gomp ser noe han eller hun ikke burde ha sett, er kanskje misminneformelen det beste reparasjonsverktøyet. Misminneformelen kan påføres av vedkommende, men i alvorlige tilfeller av gompe- oppmerksomhet kan magidepartementet sende en kyndig forglemmikerteam"
+  },
+  {
+    "spell": "Mobiliflorabus",
+    "desc": "En formel som på magisk vis flytter trær. Ved å bruke forstavelsen «mobili-» og tilføye det latinske navnet for en gjenstand, kan formelen brukes til å flytte mange forskjellige ting. For eksempel har man «mobilis» som er latin for «flyttbar» og «arbor» som er latin for et tre."
+  },
+  {
+    "spell": "Mobilicorpus",
+    "desc": "Når en person ikke er i stand til å gå på egenhånd kan denne formelen brukes til å transportere dem. Den får det til se ut som usynlige tråder holder personen oppe."
+  },
+  {
+    "spell": "Momento",
+    "desc": "En formel som brukes for å forsinke noe."
+  },
+  {
+    "spell": "Morsmordre",
+    "desc": "En formel som maner fram Mørkets merke, Fyrst Voldemorts symbol."
+  },
+  {
+    "spell": "Nox",
+    "desc": "Trylleformel som brukes for å slukke en tryllestav som har blitt tent med lysformelen lumos."
+  },
+  {
+    "spell": "Orkideus",
+    "desc": "En trylleformel som får blomster til å komme ut av en tryllestav. "
+  },
+  {
+    "spell": "Opulus Reparo",
+    "desc": "En formel som reparerer glass."
+  },
+  {
+    "spell": "Overflatio",
+    "desc": "Får personen som utøver formelen til å komme fort opp til overflaten av vann."
+  },
+  {
+    "spell": "Pakk",
+    "desc": "Et trylleformular for pakking av bagasje. Med lang trening vil formularet kunne brette tøyet og pakke bagasjen ordnet og pent."
+  },
+  {
+    "spell": "Parero",
+    "desc": "Denne formelen danner et midlertidig skjold rundt brukeren som sender våder og mindre forbannelser tilbake på angriperen som kastet dem. "
+  },
+  {
+    "spell": "Parero Totalis",
+    "desc": "Denne formelen gir total beskyttelse for den som befinner seg innenfor virkeområdet og er den heksingen som gir best beskyttelse mot uønskede elementer."
+  },
+  {
+    "spell": "Parero Horibilis",
+    "desc": "Først brukt av Filius Pirrevimp til å avstøte forbannelser dødseterne måtte kaste mot Galtvortborgen under «slaget om Galtvort»."
+  },
+  {
+    "spell": "Pepperpust",
+    "desc": "En trylleformel som får pusten til å bli brennende het."
+  },
+  {
+    "spell": "Periculum",
+    "desc": "Gjør så du får rødt fyrverkeri ut av stavtippen."
+  },
+  {
+    "spell": "Petrificus totalis",
+    "desc": "En full kroppslås; personen som blir truffet av formelen får alle musklene i kroppen lammet."
+  },
+  {
+    "spell": "Plomberiporto",
+    "desc": "Denne trylleformelen forsegler en dør så den ikke kan brukes på vanlig måte, men den lar seg lett oppheve av Alohomora-formelen."
+  },
+  {
+    "spell": "Pol-Pek",
+    "desc": "Denne formelen gjør at tryllestaven peker mot Nord."
+  },
+  {
+    "spell": "Redusio",
+    "desc": "En formel som gir noe som er blitt forstørret med forkjempningsformularet sin opprinnelige størrelse tilbake."
+  },
+  {
+    "spell": "Reisoppio",
+    "desc": "En trylleformel får ting, som for eksempel telt til å reise seg."
+  },
+  {
+    "spell": "Reparo",
+    "desc": "En reperasjonsformel som reparerer alt bortsett fra glass."
+  },
+  {
+    "spell": "Restitutio",
+    "desc": "En trylleformel som helbreder sår på kroppen. "
+  },
+  {
+    "spell": "Revnio",
+    "desc": "En trylleformel som er i stand til å rive opp gjenstander."
+  },
+  {
+    "spell": "Rictusempera",
+    "desc": "Det er en kileformel som kiler motstanderen så grundig at han eller hun kollapser i bakken av latter."
+  },
+  {
+    "spell": "Sclio",
+    "desc": "En enkel formel som brukes for å omdanne trapper til en rutsjebane."
+  },
+  {
+    "spell": "Sectumsemper",
+    "desc": "En trylleformel lager dype kutt der tryllestaven pekes eller svinges over."
+  },
+  {
+    "spell": "Serpensortia",
+    "desc": "En trylleformel som får en stor slange til å komme ut av en tryllestav."
+  },
+  {
+    "spell": "Skrubberunt",
+    "desc": "En formel som rengjør gjenstander."
+  },
+  {
+    "spell": "Sonorus",
+    "desc": "En formel som forsterker en stemme magisk, dempes med stillus-formelen"
+  },
+  {
+    "spell": "Splintula",
+    "desc": "En spjelke-formel; forbinder skadede lemmer og har samme funksjon som spjelking."
+  },
+  {
+    "spell": "Stillus",
+    "desc": "Denne formelen er motformelen til Sonorus; den gjør stemmen normal etter at den har vært magisk forsterket."
+  },
+  {
+    "spell": "Stimulus",
+    "desc": "En oppvekkingsformel som vekker opp en person som er blitt slått i svime av lammeforbannelsen ( Lamstivosløvus)."
+  },
+  {
+    "spell": "Surrosorlio",
+    "desc": "En trylleformel som hindrer folk rundt personen som framsa den å høre det en snakker om ved å fylle ørene deres med «surr»."
+  },
+  {
+    "spell": "Svulmio",
+    "desc": "En formel som får ting til å svulme/vokse i størelse. "
+  },
+  {
+    "spell": "Tafyrio",
+    "desc": "En trylleformel som tenner en flamme på tryllestaven som kan tenne på en gjennstand/noe"
+  },
+  {
+    "spell": "Tannekspandio",
+    "desc": "En trylleformular som får tenner til å vokse med skremmende fart."
+  },
+  {
+    "spell": "Tarotta",
+    "desc": "En formel som får skapninger til å gå til angrep på en fiende."
+  },
+  {
+    "spell": "Talenixio Totalis",
+    "desc": "En formel som limer tungen fast i ganen og gjør det nesten umulig å snakke."
+  },
+  {
+    "spell": "Tvillingio",
+    "desc": "En formel brukt av Hermine i Harry Potter og Dødstalismanene for og kopiere et objekt, da får du to like ting som kan byttes ut."
+  },
+  {
+    "spell": "Tyggisvekkus",
+    "desc": "En formel som ble brukt av professor Lupus i den tredje boka til å fjerne en klump med tyggegummi fra et nøkkelhull."
+  },
+  {
+    "spell": "Tarantellegra",
+    "desc": "Det er en formel som gjør at beinene begynner å danse i en slags selskapdans."
+  },
+  {
+    "spell": "Ustrypio",
+    "desc": "En formel som gir folk pusten tilbake, også når de har satt noe i vrangstrupen."
+  },
+  {
+    "spell": "Ubryteløftet",
+    "desc": "Ubryteligløftet er et magisk løfte mellom to personer som det er umulig å bryte uten å dø selv. Løftet inneholder tre (valgfrie) punkter."
+  },
+  {
+    "spell": "Vipendo",
+    "desc": "En slags strømformel som blant annet brukes av stavskytere fra magipolitiet."
+  },
+  {
+    "spell": "Volnera Senentur",
+    "desc": "Brukes mot Sectumsemper eller andre (u)naturlige blødende skader, for å få blodet inn igjen etter at skaden er forekommet."
+  },
+  {
+    "spell": "Vikframio/Deporto",
+    "desc": "Formelen er nesten det motsatte av «apporto». Den gjør at det staven peker på blir skutt bakov"
+  },
+  {
+    "spell": "Vingardium Leviosa",
+    "desc": "En levitasjonsformel; får en gjenstand til å sveve. "
+  }
+]

@@ -1,4 +1,6 @@
+var formler = []
 $(function(){
+        addSpellsToSpellbook();
         setInterval(function(){
             $.ajax({
                 type: "GET",
@@ -10,7 +12,12 @@ $(function(){
                     var chat = $('#fullscrape #indiv');
                     $('#fullscrape #indiv br').append('<br/>')
                     $('#chat_room').html(chat);
-
+                    $("#chat_room a").each(function() {
+                        var $this = $(this);
+                        var _href = $this.attr("href");
+                        $this.attr("href", "http://galtvortskolen.net" + _href );
+                        $this.attr("target", "_blank");
+                    });
                     $('#fullscrape').html('cleard');
                 },
             });
@@ -26,6 +33,32 @@ $('#chat_input_field').bind('keyup', function(e) {
     }
 
 });
+
+function addSpellsToSpellbook(){
+    /*
+    <div class="formel">
+            <strong></strong>
+            <span></span>
+            <br>
+        </div>
+     */
+
+    $.getJSON( "spells.json", function( json ) {
+        var id = 0;
+        formler = [];
+        $.each(json, function (key, value) {
+            formler.push(value);
+            $('#book').append('' +
+                '<div data-id='+id+' class="formel">' +
+                '<strong>' + value.spell + ' </strong>' +
+                '<span>' + value.desc + '</span>' +
+                '</div>' +
+                '');
+            id++;
+        })
+    });
+}
+
 
 function postMsg(msg) {
     msg = msg.replace(/\n|\r/g, "");
@@ -44,42 +77,7 @@ function postMsg(msg) {
         contentType: "application/x-www-form-urlencoded"
     })
 }
-function insertAtCaret(areaId, text) {
-    var txtarea = document.getElementById(areaId);
-    if (!txtarea) { return; }
 
-    var scrollPos = txtarea.scrollTop;
-    var strPos = 0;
-    var br = ((txtarea.selectionStart || txtarea.selectionStart == '0') ?
-        "ff" : (document.selection ? "ie" : false ) );
-    if (br == "ie") {
-        txtarea.focus();
-        var range = document.selection.createRange();
-        range.moveStart ('character', -txtarea.value.length);
-        strPos = range.text.length;
-    } else if (br == "ff") {
-        strPos = txtarea.selectionStart;
-    }
-
-    var front = (txtarea.value).substring(0, strPos);
-    var back = (txtarea.value).substring(strPos, txtarea.value.length);
-    txtarea.value = front + text + back;
-    strPos = strPos + text.length;
-    if (br == "ie") {
-        txtarea.focus();
-        var ieRange = document.selection.createRange();
-        ieRange.moveStart ('character', -txtarea.value.length);
-        ieRange.moveStart ('character', strPos);
-        ieRange.moveEnd ('character', 0);
-        ieRange.select();
-    } else if (br == "ff") {
-        txtarea.selectionStart = strPos;
-        txtarea.selectionEnd = strPos;
-        txtarea.focus();
-    }
-
-    txtarea.scrollTop = scrollPos;
-}
 
 $('#quote_start').click(function () {
     $('#textareaid').val($('#textareaid').val() +'«');
@@ -87,4 +85,16 @@ $('#quote_start').click(function () {
 
 $('#quote_end').click(function () {
     $('#textareaid').val($('#textareaid').val() +'»');
+});
+$('#quote_both').click(function () {
+    $('#textareaid').val($('#textareaid').val() +'«»');
+});
+$('#spell_book').click(function () {
+    addSpellsToSpellbook();
+});
+
+$('#book').on('click', '.formel', function () {
+    var id = $(this).data('id');
+    formel_navn = formler[id].spell;
+    $('#textareaid').val($('#textareaid').val() + formel_navn);
 });
