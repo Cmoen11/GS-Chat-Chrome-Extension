@@ -1,27 +1,58 @@
 var formler = []
 $(function(){
         addSpellsToSpellbook();
+
+
+
         setInterval(function(){
             $.ajax({
-                type: "GET",
-                url: "http://galtvortskolen.net/",
-                timeout: 10000,
+            type: "GET",
+            url: "http://galtvortskolen.net/",
+            timeout: 10000,
 
-                success:  function(newRowCount){
-                    $('#fullscrape').html(newRowCount);
-                    var chat = $('#fullscrape #indiv');
-                    $('#fullscrape #indiv br').append('<br/>')
-                    $('#chat_room').html(chat);
-                    $("#chat_room a").each(function() {
-                        var $this = $(this);
-                        var _href = $this.attr("href");
-                        $this.attr("href", "http://galtvortskolen.net" + _href );
-                        $this.attr("target", "_blank");
-                    });
-                    $('#fullscrape').html('cleard');
-                },
-            });
+            success:  function(newRowCount){
+                // put the current data in a invisible div.
+                $('#fullscrape').html(newRowCount);
+
+                // target the chat.
+                var chat = $('#fullscrape #indiv');
+
+                // add chat to our chat box
+                $('#chat_room').html(chat);
+
+                // add correct link to each link of the chat room. (usually the name links).
+                $("#chat_room a").each(function() {
+                    var $this = $(this);
+                    var _href = $this.attr("href");
+                    $this.attr("href", "http://galtvortskolen.net" + _href );
+                    $this.attr("target", "_blank");
+                });
+
+                var html_start = '<div class="chat-post"></div>';
+                var html_end = '</div>';
+
+                $('<div class="chat-post"></div>').wrap($('#chat_room a'));
+
+                $('<br />').insertBefore("#chat_room a:not(:first-child)");
+                //$(html_end).insertAfter($("#chat_room a").next().next());
+
+                // check for new uglepost :^)
+                if ($('#fullscrape .front-top-menu:last-child').text() != 'Uglepost(0)') {
+                    $('#uglepost a').text('📬 ' + $('#fullscrape .front-top-menu:last-child').text());
+                    var $this = $(this);
+                    $this.attr("target", "_blank");
+                }else {
+                    $('#uglepost a').text('📭 ' + $('#fullscrape .front-top-menu:last-child').text());
+                    $(this).attr("target", "_blank");
+                }
+
+                $('#fullscrape').html('cleard');
+
+            },
+        });
         },1000); // 5000ms == 5 seconds
+
+
 });
 
 $('#chat_input_field').bind('keyup', function(e) {
@@ -35,7 +66,7 @@ $('#chat_input_field').bind('keyup', function(e) {
 });
 
 function addSpellsToSpellbook(){
-    /*
+    /* the format.
     <div class="formel">
             <strong></strong>
             <span></span>
@@ -46,6 +77,7 @@ function addSpellsToSpellbook(){
     $.getJSON( "spells.json", function( json ) {
         var id = 0;
         formler = [];
+        $('.formel').remove();
         $.each(json, function (key, value) {
             formler.push(value);
             $('#book').append('' +

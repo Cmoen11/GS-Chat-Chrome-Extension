@@ -34,6 +34,13 @@
             overflow-x:hidden;
             float: left;
         }
+        div#chat_room a {
+            text-decoration: none;
+        }
+        div#chat_room a:hover {
+            text-decoration:white underline;
+        }
+
         div#chat_input_field {
             margin-top:5px;
             width:70%;
@@ -45,16 +52,33 @@
             position: relative;
             top:-25px;
             max-height: 410px;
-            font-size: 10px;
+            font-size: 12px;
             overflow-y: scroll;
 
         }
         div#book .formel {
-            margin-top:5px;
+            margin-top:10px;
             cursor: pointer;
+            padding:5px;
+            border-radius: 5px;
+            background-color: #1b1b1b;
+        }
+        div#book .formel:nth-child(odd) {
+            background-color:#2c2c2c ;
+
         }
         div#book .formel:hover {
-            color:lavender;
+            color: dimgray;
+        }
+
+        div#chat_room .chat-post {
+            margin-top:10px;
+            padding:5px;
+            border-radius: 5px;
+            background-color: #1b1b1b;
+        }
+        div#chat_room .chat-post:nth-child(odd) {
+            background-color:#2c2c2c;
         }
 
 
@@ -70,8 +94,10 @@
     <!--<script src="index.js"></script>-->
 </head>
 <body>
-<div style="width:730px; padding:20px; overflow-x:hidden !important;">
-    <h2 style="text-align: center">GS Chat v1.3: Storsalen</h2>
+<div id="uglepost"><a href="http://galtvortskolen.net/?side=show_pm" target='_blank' style="color:white; text-decoration: none">📭 Henter uglepost.</a></div>
+
+<div style="width:730px; padding:20px; overflow-x:hidden !important; overflow: hidden;">
+    <h2 style="text-align: center">GS Chat v1.4: Storsalen</h2>
     <div id="book"><h3>Formell bok</h3> <i>Trykk på formelen for å legge den til i chatten.</i><br><br></div>
     <div id="chat_room">Du er nødt til å være logget inn for å kunne lese chatten.</div> <!-- this will be the actual chat being displayed. -->
 
@@ -84,11 +110,12 @@
     <button id="quote_end">» - quote slutt</button>
     <button id="quote_both">«» - begge quotes</button>
     <button id="spell_book">📓 - Åpne formellbok</button>
-    <button id="wand_book">📓 - Åpne tryllestavbok</button>
+    <button id="wand_book" disabled>📓 - Åpne tryllestavbok</button>
 </div>
 <script src="getChat.js"></script>
 <div id="status"></div>
 <img id="image-result" hidden>
 <div style="display: none" id="fullscrape"></div>
+<script>alert("works");</script>
 </body>
 </html>
