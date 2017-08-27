@@ -17,6 +17,7 @@
             font-size: 100%;
             background-color: #101010;
             color:white;
+            overflow: hidden;
         }
         #status {
             /* avoid an excessively wide status text */
@@ -72,7 +73,7 @@
 
         div#chat_room p {
             margin-top:10px;
-            padding:5px;
+            padding:10px;
             border-radius: 5px;
             background-color: #1b1b1b;
             border: 1px dotted #3b3b3b;
@@ -95,6 +96,17 @@
         textarea::selection {
 
         }
+        div#uglepost a{
+            position: relative;
+            z-index: 999;
+            outline: none;
+        }
+        div#uglepost a:hover{
+            outline: none;
+            text-decoration: white underline;
+            color:white;
+        }
+
 
         /* Turn on custom 8px wide scrollbar */
         ::-webkit-scrollbar {
@@ -160,6 +172,7 @@
     <button id="quote_start">« - quote start</button>
     <button id="quote_end">» - quote slutt</button>
     <button id="quote_both">«» - begge quotes</button>
+    <div style="float: right"><span style="font-size:12px; position: relative; bottom: -15px; right: 15px;">Laget av Chrystean Dunston Applefield</span></div>
     <!--
     <button id="spell_book">📓 - Åpne formellbok</button>
     <button id="wand_book" disabled>📓 - Åpne tryllestavbok</button>
