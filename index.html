@@ -27,8 +27,7 @@
         }
         div#chat_room{
            width: 70%;
-            height: 270px;
-            border: 1px solid black;
+            height: 340px;
             overflow: scroll;
             overflow-y:scroll;
             overflow-x:hidden;
@@ -51,7 +50,7 @@
             float:right;
             position: relative;
             top:-25px;
-            max-height: 410px;
+            max-height: 480px;
             font-size: 12px;
             overflow-y: scroll;
 
@@ -71,14 +70,66 @@
             color: dimgray;
         }
 
-        div#chat_room .chat-post {
+        div#chat_room p {
             margin-top:10px;
             padding:5px;
             border-radius: 5px;
             background-color: #1b1b1b;
+            border: 1px dotted #3b3b3b;
+            font-size: 13px;
         }
-        div#chat_room .chat-post:nth-child(odd) {
-            background-color:#2c2c2c;
+        div#chat_room p:nth-child(odd) {
+            background-color:#141414;
+        }
+
+        textarea {
+            background-color: #1b1b1b;
+            color:white;
+            border-radius: 5px;
+            padding:5px;
+            border: 1px dotted #3b3b3b;
+            outline: none;
+            height:85px;
+            margin-top:15px;
+        }
+        textarea::selection {
+
+        }
+
+        /* Turn on custom 8px wide scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px; /* 1px wider than Lion. */
+            /* This is more usable for users trying to click it. */
+            background-color: rgba(0,0,0,0);
+            -webkit-border-radius: 100px;
+        }
+        /* hover effect for both scrollbar area, and scrollbar 'thumb' */
+        ::-webkit-scrollbar:hover {
+            background-color: rgba(0, 0, 0, 0.09);
+        }
+
+        /* The scrollbar 'thumb' ...that marque oval shape in a scrollbar */
+        ::-webkit-scrollbar-thumb:vertical {
+            /* This is the EXACT color of Mac OS scrollbars.
+               Yes, I pulled out digital color meter */
+            background: rgba(0,0,0,0.5);
+            -webkit-border-radius: 100px;
+        }
+        ::-webkit-scrollbar-thumb:vertical:active {
+            background: rgba(0,0,0,0.61); /* Some darker color when you click it */
+            -webkit-border-radius: 100px;
+        }
+        button {
+            background-color: #1b1b1b;
+            color:white;
+            border-radius: 5px;
+            border: 1px dotted #3b3b3b;
+            padding:10px;
+            margin-left:10px;
+        }
+        button:hover {
+            background-color: #141414;
+            cursor: pointer;
         }
 
 
@@ -96,21 +147,23 @@
 <body>
 <div id="uglepost"><a href="http://galtvortskolen.net/?side=show_pm" target='_blank' style="color:white; text-decoration: none">📭 Henter uglepost.</a></div>
 
-<div style="width:730px; padding:20px; overflow-x:hidden !important; overflow: hidden;">
+<div style="width:780px; position: relative; top:-50px; padding:20px; overflow-x:hidden !important; overflow: hidden;">
     <h2 style="text-align: center">GS Chat v1.4: Storsalen</h2>
     <div id="book"><h3>Formell bok</h3> <i>Trykk på formelen for å legge den til i chatten.</i><br><br></div>
     <div id="chat_room">Du er nødt til å være logget inn for å kunne lese chatten.</div> <!-- this will be the actual chat being displayed. -->
 
-    <div id="chat_input_field"><textarea id="textareaid" placeholder="Skriv noe" style="width: 100%; height: 100px"></textarea></div>
+    <div id="chat_input_field"><textarea id="textareaid" placeholder="Skriv noe" style="width: 96%;"></textarea></div>
 
     <!-- buttons -->
 </div>
-<div style="width:100%; position: relative; bottom:0px;">
+<div style="width:100%; position: relative; bottom:75px; margin-left:10px;">
     <button id="quote_start">« - quote start</button>
     <button id="quote_end">» - quote slutt</button>
     <button id="quote_both">«» - begge quotes</button>
+    <!--
     <button id="spell_book">📓 - Åpne formellbok</button>
     <button id="wand_book" disabled>📓 - Åpne tryllestavbok</button>
+    -->
 </div>
 <script src="getChat.js"></script>
 <div id="status"></div>

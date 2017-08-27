@@ -7,7 +7,7 @@ $(function(){
         setInterval(function(){
             $.ajax({
             type: "GET",
-            url: "http://galtvortskolen.net/",
+            url: "http://galtvortskolen.net/?side=chat",
             timeout: 10000,
 
             success:  function(newRowCount){
@@ -15,7 +15,7 @@ $(function(){
                 $('#fullscrape').html(newRowCount);
 
                 // target the chat.
-                var chat = $('#fullscrape #indiv');
+                var chat = $('#fullscrape #chat_big');
 
                 // add chat to our chat box
                 $('#chat_room').html(chat);
@@ -28,22 +28,15 @@ $(function(){
                     $this.attr("target", "_blank");
                 });
 
-                var html_start = '<div class="chat-post"></div>';
-                var html_end = '</div>';
-
-                $('<div class="chat-post"></div>').wrap($('#chat_room a'));
-
-                $('<br />').insertBefore("#chat_room a:not(:first-child)");
-                //$(html_end).insertAfter($("#chat_room a").next().next());
+                $("#chat_room a").css("margin-right", "5px");
 
                 // check for new uglepost :^)
                 if ($('#fullscrape .front-top-menu:last-child').text() != 'Uglepost(0)') {
                     $('#uglepost a').text('📬 ' + $('#fullscrape .front-top-menu:last-child').text());
-                    var $this = $(this);
-                    $this.attr("target", "_blank");
+                    $('#uglepost a').css("color", "#3098FF");
                 }else {
                     $('#uglepost a').text('📭 ' + $('#fullscrape .front-top-menu:last-child').text());
-                    $(this).attr("target", "_blank");
+                    $('#uglepost a').css("color", "white");
                 }
 
                 $('#fullscrape').html('cleard');
