@@ -7,7 +7,7 @@
  -->
 <html>
 <head>
-    <title>Getting Started Extension's Popup</title>
+    <title>GS CHAT</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <script src="jquery-3.2.1.min.js"></script>
 
@@ -18,13 +18,6 @@
             background-color: #101010;
             color:white;
             overflow: hidden;
-        }
-        #status {
-            /* avoid an excessively wide status text */
-            white-space: pre;
-            text-overflow: ellipsis;
-            overflow: hidden;
-            max-width: 400px;
         }
         div#chat_room{
            width: 70%;
@@ -138,10 +131,17 @@
             border: 1px dotted #3b3b3b;
             padding:10px;
             margin-left:10px;
+            outline: none;
         }
         button:hover {
             background-color: #141414;
             cursor: pointer;
+        }
+        #control_strip {
+            width:100%;
+            position: relative;
+            bottom:75px;
+            margin-left:10px
         }
 
 
@@ -160,7 +160,7 @@
 <div id="uglepost"><a href="http://galtvortskolen.net/?side=show_pm" target='_blank' style="color:white; text-decoration: none">📭 Henter uglepost.</a></div>
 
 <div style="width:780px; position: relative; top:-50px; padding:20px; overflow-x:hidden !important; overflow: hidden;">
-    <h2 style="text-align: center">GS Chat v1.4: Storsalen</h2>
+    <h2 style="text-align: center">GS Chat v1.5: Storsalen</h2>
     <div id="book"><h3>Formell bok</h3> <i>Trykk på formelen for å legge den til i chatten.</i><br><br></div>
     <div id="chat_room">Du er nødt til å være logget inn for å kunne lese chatten.</div> <!-- this will be the actual chat being displayed. -->
 
@@ -168,10 +168,11 @@
 
     <!-- buttons -->
 </div>
-<div style="width:100%; position: relative; bottom:75px; margin-left:10px;">
+<div id="control_strip" style=";">
     <button id="quote_start">« - quote start</button>
     <button id="quote_end">» - quote slutt</button>
     <button id="quote_both">«» - begge quotes</button>
+    <button id="toggle_book">📓 Lukk boka</button>
     <div style="float: right"><span style="font-size:12px; position: relative; bottom: -15px; right: 15px;">Laget av Chrystean Dunston Applefield</span></div>
     <!--
     <button id="spell_book">📓 - Åpne formellbok</button>
@@ -179,9 +180,6 @@
     -->
 </div>
 <script src="getChat.js"></script>
-<div id="status"></div>
-<img id="image-result" hidden>
 <div style="display: none" id="fullscrape"></div>
-<script>alert("works");</script>
 </body>
 </html>

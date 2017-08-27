@@ -103,6 +103,25 @@ function postMsg(msg) {
     })
 }
 
+// hide or show book.
+$('#toggle_book').click(function () {
+    if($('#book').is(':visible')) {
+        // hide
+        $('#book').hide();
+        $('#chat_room').css('width', '96%');
+        $('#chat_input_field').css('width', '97%');
+        $('#control_strip').css('bottom', '56px');
+        $(this).text('📓 Åpne boka');
+    } else {
+      // show
+        $('#chat_room').css('width', '70%');
+        $('#chat_input_field').css('width', '70%');
+        $('#control_strip').css('bottom', '75px');
+        $(this).text('📓 Lukk boka');
+        $('#book').show();
+    }
+});
+
 
 $('#quote_start').click(function () {
     $('#textareaid').val($('#textareaid').val() +'«');
