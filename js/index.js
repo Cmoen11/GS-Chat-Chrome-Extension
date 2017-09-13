@@ -1,7 +1,7 @@
 var formler = []
+
 $(function(){
         addSpellsToSpellbook();
-
 
 
         setInterval(function(){
@@ -12,14 +12,17 @@ $(function(){
 
             success:  function(newRowCount){
                 // put the current data in a invisible div.
-                $('#fullscrape').html(newRowCount);
-
+                //$('#fullscrape').html(newRowCount);
                 // target the chat.
-                var chat = $('#fullscrape #chat_big');
+                //var chat = $('#fullscrape #chat_big');
+
 
                 // add chat to our chat box
-                $('#chat_room').html(chat);
-
+                try {
+                    $('#chat_room').html($(newRowCount).find('#chat_big'));
+                }catch (err) {
+                    console.log(err);
+                }
                 // add correct link to each link of the chat room. (usually the name links).
                 $("#chat_room a").each(function() {
                     var $this = $(this);
@@ -30,18 +33,24 @@ $(function(){
 
                 $("#chat_room a").css("margin-right", "5px");
 
+                var uglepost = $(newRowCount).find($('.front-top-menu:last-child')).text();
+                console.log(uglepost);
                 // check for new uglepost :^)
-                if ($('#fullscrape .front-top-menu:last-child').text() != 'Uglepost(0)') {
-                    $('#uglepost a').text('📬 ' + $('#fullscrape .front-top-menu:last-child').text());
+                if (uglepost != 'Uglepost(0)') {
+                    $('#uglepost a').text('📬 ' + uglepost);
                     $('#uglepost a').css("color", "#3098FF");
                 }else {
-                    $('#uglepost a').text('📭 ' + $('#fullscrape .front-top-menu:last-child').text());
+                    $('#uglepost a').text('📭 ' + uglepost);
                     $('#uglepost a').css("color", "white");
                 }
 
-                $('#fullscrape').html('cleard');
+                //$('#fullscrape').html('cleard');
 
             },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                console.log("error handled");
+            }
+                
         });
         },1000); // 5000ms == 5 seconds
 
@@ -111,13 +120,13 @@ $('#toggle_book').click(function () {
         $('#chat_room').css('width', '96%');
         $('#chat_input_field').css('width', '97%');
         $('#control_strip').css('bottom', '56px');
-        $(this).text('📓 Åpne boka');
+        $(this).text('📓 Åpne formelbok');
     } else {
       // show
         $('#chat_room').css('width', '70%');
         $('#chat_input_field').css('width', '70%');
         $('#control_strip').css('bottom', '75px');
-        $(this).text('📓 Lukk boka');
+        $(this).text('📓 Lukk formelbok');
         $('#book').show();
     }
 });
@@ -136,6 +145,8 @@ $('#quote_both').click(function () {
 $('#spell_book').click(function () {
     addSpellsToSpellbook();
 });
+
+$('#toggle_book').click();
 
 $('#book').on('click', '.formel', function () {
     var id = $(this).data('id');
