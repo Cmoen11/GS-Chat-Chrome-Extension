@@ -52,6 +52,7 @@ div#book .formel:hover {
 
 div#chat_room p {
     margin-top:10px;
+    margin-right:10px;
     padding:10px;
     border-radius: 5px;
     background-color: #1b1b1b;
@@ -73,7 +74,10 @@ textarea {
     border: 1px dotted #3b3b3b;
     outline: none;
     height:85px;
+    max-height:85px;
     margin-top:15px;
+    width: 96%;
+    max-width: 96%
 }
 textarea::selection {
 
@@ -94,23 +98,23 @@ div#uglepost a:hover{
 ::-webkit-scrollbar {
     width: 8px; /* 1px wider than Lion. */
     /* This is more usable for users trying to click it. */
-    background-color: rgba(0,0,0,0);
+    background-color: #101010;
     -webkit-border-radius: 100px;
 }
 /* hover effect for both scrollbar area, and scrollbar 'thumb' */
 ::-webkit-scrollbar:hover {
-    background-color: rgba(0, 0, 0, 0.09);
+    background-color: #3b3b3b;
 }
 
 /* The scrollbar 'thumb' ...that marque oval shape in a scrollbar */
 ::-webkit-scrollbar-thumb:vertical {
     /* This is the EXACT color of Mac OS scrollbars.
        Yes, I pulled out digital color meter */
-    background: rgba(0,0,0,0.5);
+    background: rgba(0,0,0,1);
     -webkit-border-radius: 100px;
 }
 ::-webkit-scrollbar-thumb:vertical:active {
-    background: rgba(0,0,0,0.61); /* Some darker color when you click it */
+    background: rgba(0,0,0,1); /* Some darker color when you click it */
     -webkit-border-radius: 100px;
 }
 button {
@@ -133,3 +137,15 @@ button:hover {
     margin-left:10px
 }
 
+select#chat_channel {
+    background-color: #1b1b1b;
+    color:white;
+    border-radius: 5px;
+    border: 1px dotted #3b3b3b;
+    padding:10px;
+    margin-left:10px;
+    outline: none;
+}
+option {
+    background-color:#3b3b3b;
+}

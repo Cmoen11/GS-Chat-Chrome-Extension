@@ -1,10 +1,5 @@
 
 <!doctype html>
-<!--
- This page is shown when the extension button is clicked, because the
- "browser_action" field in manifest.json contains the "default_popup" key with
- value "popup.html".
- -->
 <html>
 <head>
     <title>GS CHAT</title>
@@ -18,11 +13,11 @@
 
 
 <div style="width:780px; position: relative; top:-50px; padding:20px; overflow-x:hidden !important; overflow: hidden;">
-    <h2 style="text-align: center">GS Chat v1.6: Storsalen</h2>
+    <h2 style="text-align: center">GS Chat v1.7: <span id="chat-room-text">Storsalen</span></h2>
     <div id="book"><h3>Formell bok</h3> <i>Trykk på formelen for å legge den til i chatten.</i><br><br></div>
     <div id="chat_room">Du er nødt til å være logget inn for å kunne lese chatten.</div> <!-- this will be the actual chat being displayed. -->
 
-    <div id="chat_input_field"><textarea id="textareaid" placeholder="Skriv noe" style="width: 96%;"></textarea></div>
+    <div id="chat_input_field"><textarea id="textareaid" placeholder="Skriv noe" autofocus></textarea></div>
 </div>
 
 <!-- buttons -->
@@ -31,10 +26,16 @@
     <button id="quote_end">» - quote slutt</button>
     <button id="quote_both">«» - begge quotes</button>
     <button id="toggle_book">📓 Lukk formelbok</button>
-    <div style="float: right"><span style="font-size:12px; position: relative; bottom: -15px; right: 15px;">Laget av Chrystean Dunston Applefield</span></div>
+    <select id="chat_channel">
+        <option value="Storsalen" selected>Storsalen</option>
+        <option value="Oppholdsrom" disabled>Oppholdsrom</option>
+        <option value="RPG">RPG</option>
+        <option value="RL">RL</option>
+    </select>
+    <div style="float: right"><span style="font-size:12px; position: relative; bottom: -15px; right: 15px;"></span></div>
 </div>
 
+
 <script src="js/index.js"></script>
-<div style="display: none" id="fullscrape"></div>
 </body>
 </html>

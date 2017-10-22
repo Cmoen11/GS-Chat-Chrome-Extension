@@ -5,47 +5,38 @@ $(function(){
 
 
         setInterval(function(){
+            chat_type = getChat($('#chat_channel').val());
             $.ajax({
             type: "GET",
-            url: "http://galtvortskolen.net/?side=chat",
+            url: "http://galtvortskolen.net/?side="+chat_type.url,
             timeout: 10000,
 
             success:  function(newRowCount){
-                // put the current data in a invisible div.
-                //$('#fullscrape').html(newRowCount);
-                // target the chat.
-                //var chat = $('#fullscrape #chat_big');
-
-
-                // add chat to our chat box
                 try {
-                    $('#chat_room').html($(newRowCount).find('#chat_big'));
+
+                    $('#chat_room').html($(newRowCount).find(chat_type.chat_id));
+                    $("#chat_room a").each(function() {
+
+                        // for each link in chat, add correct path.
+                        var $this = $(this);
+                        var _href = $this.attr("href");
+                        $this.attr("href", "http://galtvortskolen.net" + _href );
+                        $this.attr("target", "_blank");
+                        $("#chat_room a").css("margin-right", "5px");
+                    });
+
+                    // set uglepost..
+                    var uglepost = $(newRowCount).find('.front-top-menu:last-child').text();
+                    if (uglepost != 'Uglepost(0)') {
+                        $('#uglepost a').text('📬 ' + uglepost);
+                        $('#uglepost a').css("color", "#3098FF");
+                    }else {
+                        $('#uglepost a').text('📭 ' + uglepost);
+                        $('#uglepost a').css("color", "white");
+                    }
                 }catch (err) {
                     console.log(err);
                 }
-                // add correct link to each link of the chat room. (usually the name links).
-                $("#chat_room a").each(function() {
-                    var $this = $(this);
-                    var _href = $this.attr("href");
-                    $this.attr("href", "http://galtvortskolen.net" + _href );
-                    $this.attr("target", "_blank");
-                });
-
-                $("#chat_room a").css("margin-right", "5px");
-
-                var uglepost = $(newRowCount).find($('.front-top-menu:last-child')).text();
-                console.log(uglepost);
-                // check for new uglepost :^)
-                if (uglepost != 'Uglepost(0)') {
-                    $('#uglepost a').text('📬 ' + uglepost);
-                    $('#uglepost a').css("color", "#3098FF");
-                }else {
-                    $('#uglepost a').text('📭 ' + uglepost);
-                    $('#uglepost a').css("color", "white");
-                }
-
-                //$('#fullscrape').html('cleard');
-
             },
             error: function(XMLHttpRequest, textStatus, errorThrown) {
                 console.log("error handled");
@@ -62,6 +53,7 @@ $('#chat_input_field').bind('keyup', function(e) {
     if ( e.keyCode === 13 ) { // 13 is enter key
         postMsg($('#chat_input_field textarea').val());
         $('#chat_input_field textarea').val('');
+        $('#textareaid').focus(); // keep the focus
 
     }
 
@@ -95,13 +87,15 @@ function addSpellsToSpellbook(){
 
 
 function postMsg(msg) {
+    chat_type = getChat($('#chat_channel').val());
     msg = msg.replace(/\n|\r/g, "");
     msg = escape(msg).replace(/\+/g, "%2B");
-    var data = "chat_message="+msg.trim()+ "&chat_submit=Send";
+    console.log('input[name="'+chat_type.button_name+'"]');
+    var data = chat_type.input_name+"="+msg.trim()+ "&"+chat_type.button_name+"="+$('input[name="'+chat_type.button_name+'"]').val();
     console.log(msg);
     $.ajax({
         type:"POST",
-        url: "http://galtvortskolen.net/",
+        url: "http://galtvortskolen.net/?side="+chat_type.url,
         processData: false,
         data: data,
         success: function (data) {
@@ -110,6 +104,7 @@ function postMsg(msg) {
         dataType: "html",
         contentType: "application/x-www-form-urlencoded"
     })
+    console.log(data);
 }
 
 // hide or show book.
@@ -134,16 +129,22 @@ $('#toggle_book').click(function () {
 
 $('#quote_start').click(function () {
     $('#textareaid').val($('#textareaid').val() +'«');
+    $('#textareaid').focus();
 });
 
 $('#quote_end').click(function () {
     $('#textareaid').val($('#textareaid').val() +'»');
+    $('#textareaid').focus();
 });
 $('#quote_both').click(function () {
     $('#textareaid').val($('#textareaid').val() +'«»');
+    $('#textareaid').focus();
 });
+
+
 $('#spell_book').click(function () {
     addSpellsToSpellbook();
+    $('#textareaid').focus();
 });
 
 $('#toggle_book').click();
@@ -153,3 +154,33 @@ $('#book').on('click', '.formel', function () {
     formel_navn = formler[id].spell;
     $('#textareaid').val($('#textareaid').val() + formel_navn);
 });
+
+
+function getChat(chat_type) {
+    // chat type is what chat to return
+    switch (chat_type) {
+        case 'RPG':
+            return {'url' : 'rpg_chat', chat_id: '#chat-room-form', input_name : 'message_rpg', button_name : 'rpg_chat_submit'}
+            break;
+        case 'RL':
+            return {'url' : 'rl_chat', chat_id : '#chat-room-form', input_name : 'message_rl', button_name : 'rl_chat_submit'}
+            break;
+        default :
+            // gives back default Storsalen chat
+            return {'url' : 'chat', chat_id : '#chat_big', input_name: 'chat_message', button_name : 'chat_submit'}
+    }
+}
+
+
+$('#chat_channel').change(function() {
+    $('span#chat-room-text').text($(this).val());
+    $('#textareaid').focus();
+});
+/*
+var textarea = $('#textareaid');
+
+textarea.bind("blur", function() {
+    setTimeout(function() {
+        textarea.focus();
+    }, 0);
+});*/
