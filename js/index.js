@@ -13,7 +13,7 @@ $(function(){
 
             success:  function(newRowCount){
                 try {
-
+                    var chat = [];
                     $('#chat_room').html($(newRowCount).find(chat_type.chat_id));
                     $("#chat_room a").each(function() {
 
@@ -23,7 +23,22 @@ $(function(){
                         $this.attr("href", "http://galtvortskolen.net" + _href );
                         $this.attr("target", "_blank");
                         $("#chat_room a").css("margin-right", "5px");
+
+
                     });
+                    $('#chat_room p').each(function () {
+                        if($.inArray(this, chat) == -1) {
+                            chat.push(this);
+                        }
+                    })
+                    if (chat_type.reverse) {
+                        chat.reverse();
+                    }
+
+                    $('#chat_room').html('');
+                    for (var i = 0; i < chat.length; i++) {
+                        $('#chat_room').append(chat[i]);
+                    }
 
                     // set uglepost..
                     var uglepost = $(newRowCount).find('.front-top-menu:last-child').text();
@@ -160,14 +175,14 @@ function getChat(chat_type) {
     // chat type is what chat to return
     switch (chat_type) {
         case 'RPG':
-            return {'url' : 'rpg_chat', chat_id: '#chat-room-form', input_name : 'message_rpg', button_name : 'rpg_chat_submit'}
+            return {'url' : 'rpg_chat', chat_id: '#chat-room-form', input_name : 'message_rpg', button_name : 'rpg_chat_submit', reverse : true}
             break;
         case 'RL':
-            return {'url' : 'rl_chat', chat_id : '#chat-room-form', input_name : 'message_rl', button_name : 'rl_chat_submit'}
+            return {'url' : 'rl_chat', chat_id : '#chat-room-form', input_name : 'message_rl', button_name : 'rl_chat_submit', reverse : false}
             break;
         default :
             // gives back default Storsalen chat
-            return {'url' : 'chat', chat_id : '#chat_big', input_name: 'chat_message', button_name : 'chat_submit'}
+            return {'url' : 'chat', chat_id : '#chat_big', input_name: 'chat_message', button_name : 'chat_submit', reverse : false}
     }
 }
 
