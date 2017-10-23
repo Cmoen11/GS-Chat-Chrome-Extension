@@ -57,7 +57,7 @@ div#chat_room p {
     border-radius: 5px;
     background-color: #1b1b1b;
     border: 1px dotted #3b3b3b;
-    font-size: 13px;
+    font-size: 12px;
 }
 div#chat_room p:nth-child(odd) {
     background-color:#141414;
