@@ -66,6 +66,8 @@ $(function () {
                         //login()
                     }
 
+                    change_chat_font_size();
+
                 } catch (err) {
                     console.log(err);
                 }
@@ -246,3 +248,27 @@ $('#toggle_book').click(function () {
 $('#toggle_book').click();
 
 
+function change_chat_font_size() {
+    chrome.storage.sync.get('font-size', function (items) {
+        if (!chrome.runtime.error) {
+            $('div#chat_room p').css('font-size', items.data);
+        }
+    })
+}
+
+$('input#font-size').change(function() {
+    chrome.storage.sync.set({'font-size': $(this).val() + 'px'});
+})
+
+
+chrome.storage.onChanged.addListener(function(changes, namespace) {
+    for (key in changes) {
+        var storageChange = changes[key];
+
+        // change font-size on chat.
+        if (key == 'font-size') {
+            if (storageChange.newValue < 10 && storageChange.newValue > 20)
+                $('div#chat_room p').css('font-size', storageChange.newValue);
+        }
+    }
+});

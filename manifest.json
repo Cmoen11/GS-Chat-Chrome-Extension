@@ -16,12 +16,13 @@
     "https://ajax.googleapis.com/",
     "http://galtvortskolen.net/",
     "tabs",
-    "notifications"
+    "notifications",
+    "storage"
   ],
   "background": {
     "scripts": [
       "js/jquery-3.2.1.min.js",
-      "js/index.js"
+      "js/background.js"
     ],
     "persistent": false
   }

@@ -12,6 +12,8 @@ div#chat_room{
     overflow-y:scroll;
     overflow-x:hidden;
     float: left;
+    /*display: flex;
+    #flex-direction: column-reverse;*/
 }
 div#chat_room a {
     text-decoration: none;
@@ -126,6 +128,18 @@ button {
     margin-left:10px;
     outline: none;
 }
+
+input#font-size {
+    background-color: #1b1b1b;
+    color:white;
+    border-radius: 5px;
+    border: 1px dotted #3b3b3b;
+    padding:10px;
+    width:50px;
+    margin-left:10px;
+    outline: none;
+}
+
 button:hover {
     background-color: #141414;
     cursor: pointer;
