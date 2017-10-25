@@ -4,7 +4,6 @@ var username = ""
 
 $(function () {
     addSpellsToSpellbook();
-    check_if_logged_in();
 
     setInterval(function () {
         chat_type = getChat($('#chat_channel').val());
@@ -18,9 +17,7 @@ $(function () {
                     var chat = [];
                     $('#chat_room').html($(newRowCount).find(chat_type.chat_id));
 
-                    // a href="/\?side=profiles.*id=.*">.*<br>
-
-
+                    var get_online_count = $(newRowCount).find('[href="/?side=online"]').text().trim().replace(/[^0-9]/g, '');
 
                     $("#chat_room a").each(function () {
 
@@ -45,26 +42,16 @@ $(function () {
                     if (chat_type.reverse) {
                         chat.reverse();
                     }
+                    chat = remove_dublicate(chat);
 
                     $('#chat_room').html('');
                     for (var i = 0; i < chat.length; i++) {
                         $('#chat_room').append(chat[i]);
                     }
 
-                    // set uglepost..
-                    var uglepost = $(newRowCount).find('.front-top-menu:last-child').text().trim();
-                    if (uglepost != 'Uglepost(0)') {
-                        $('#uglepost a').text('📬 ' + uglepost);
-                        $('#uglepost a').css("color", "#3098FF");
-                    } else {
-                        $('#uglepost a').text('📭 ' + uglepost);
-                        $('#uglepost a').css("color", "white");
-                    }
 
-                    // to ensure the user is logged in.. If It can't receive Uglepost, it indicates that the user is not logged in.
-                    if (uglepost == '' || uglepost.length == 0) {
-                        //login()
-                    }
+                    // set uglepost..
+                    update_uglepost(newRowCount);
 
                     change_chat_font_size();
 
@@ -82,6 +69,25 @@ $(function () {
 
 });
 
+function remove_dublicate(array) {
+    var output = [];
+    $.each(array, function(i, el){
+        if($.inArray(el, output) === -1) output.push(el);
+    });
+    return output;
+}
+
+function update_uglepost(newRowCount) {
+    var uglepost = $(newRowCount).find('.front-top-menu:last-child').text().trim();
+    if (uglepost != 'Uglepost(0)') {
+        $('#uglepost a').text('📬 ' + uglepost);
+        $('#uglepost a').css("color", "#3098FF");
+    } else {
+        $('#uglepost a').text('📭 ' + uglepost);
+        $('#uglepost a').css("color", "white");
+    }
+
+}
 
 
 /*
@@ -117,32 +123,8 @@ $('#chat_input_field').bind('keyup', function (e) {
     }
 
 });
-function check_if_logged_in() {
-    return;
-}
-function login() {
-    var newURL = 'http://galtvortskolen.net'
-    chrome.tabs.create({url: newURL});
-    chrome.notifications.create('Du må logge inn',{title:'Du må logge inn', message: 'Logg inn for å fortsette'})
-}
 
-function addSpellsToSpellbook() {
-    $.getJSON("spells.json", function (json) {
-        var id = 0;
-        formler = [];
-        $('.formel').remove();
-        $.each(json, function (key, value) {
-            formler.push(value);
-            $('#book').append('' +
-                '<div data-id=' + id + ' class="formel">' +
-                '<strong>' + value.spell + ' </strong>' +
-                '<span>' + value.desc + '</span>' +
-                '</div>' +
-                '');
-            id++;
-        })
-    });
-}
+
 
 
 
@@ -155,7 +137,7 @@ function getChat(chat_type) {
     switch (chat_type) {
         case 'RPG':
             return {
-                'url': 'rpg_chat',
+                url: 'rpg_chat',
                 chat_id: '#chatboxrpg',
                 input_name: 'rpg_chat_message',
                 button_name: 'rpg_chat',
@@ -165,7 +147,7 @@ function getChat(chat_type) {
             break;
         case 'RL':
             return {
-                'url': 'rl_chat',
+                url: 'rl_chat',
                 chat_id: '#chat-room-form',
                 input_name: 'message_rl',
                 button_name: 'rl_chat_submit',
@@ -175,7 +157,7 @@ function getChat(chat_type) {
             break;
         case 'Skoleparken':
             return {
-                'url': 'chat',
+                url: 'chat',
                 chat_id: '#chat-room-form',
                 input_name: 'park_message',
                 button_name: 'park_submit',
@@ -186,7 +168,7 @@ function getChat(chat_type) {
         default :
             // gives back default Storsalen chat
             return {
-                'url': 'chat',
+                url: 'chat',
                 chat_id: '#chat_big',
                 input_name: 'chat_message',
                 button_name: 'chat_submit',
@@ -197,8 +179,16 @@ function getChat(chat_type) {
 }
 
 
+/*
+****
+*       EVERYTHING THAT INCLUDES PRESSING BUTTONS 'N STUFF.
+* ***
+ */
+
+
 $('#chat_channel').change(function () {
     $('span#chat-room-text').text($(this).val());
+    chrome.storage.sync.set({chat_room:$(this).val()});
     $('#textareaid').focus();
 });
 
@@ -226,27 +216,13 @@ $('#spell_book').click(function () {
     addSpellsToSpellbook();
     $('#textareaid').focus();
 });
-// hide or show book.
-$('#toggle_book').click(function () {
-    if ($('#book').is(':visible')) {
-        // hide
-        $('#book').hide();
-        $('#chat_room').css('width', '96%');
-        $('#chat_input_field').css('width', '97%');
-        $('#control_strip').css('bottom', '56px');
-        $(this).text('📓 Åpne formelbok');
-    } else {
-        // show
-        $('#chat_room').css('width', '70%');
-        $('#chat_input_field').css('width', '70%');
-        $('#control_strip').css('bottom', '75px');
-        $(this).text('📓 Lukk formelbok');
-        $('#book').show();
-    }
-});
 
-$('#toggle_book').click();
 
+/*
+****
+*       METHODS FOR CHANGE STUFF UI.
+* ***
+ */
 
 function change_chat_font_size() {
     chrome.storage.sync.get('font-size', function (items) {
@@ -256,11 +232,76 @@ function change_chat_font_size() {
     })
 }
 
-$('input#font-size').change(function() {
-    chrome.storage.sync.set({'font-size': $(this).val() + 'px'});
-})
+// adding spells from spell json file..
+function addSpellsToSpellbook() {
+    $.getJSON("spells.json", function (json) {
+        var id = 0;
+        formler = [];
+        $('.formel').remove();
+        $.each(json, function (key, value) {
+            formler.push(value);
+            $('#book').append('' +
+                '<div data-id=' + id + ' class="formel">' +
+                '<strong>' + value.spell + ' </strong>' +
+                '<span>' + value.desc + '</span>' +
+                '</div>' +
+                '');
+            id++;
+        })
+    });
+}
 
 
+// hide or show book.
+$('#toggle_book').click(function () {
+    if ($('#book').is(':visible')) {
+        // hide
+        $('#book').hide();
+        $('#chat_room').css('width', '96%');
+        $('#chat_input_field').css('width', '97%');
+        $('#control_strip').css('bottom', '56px');
+        $(this).text('📓 Åpne formelbok');
+        chrome.storage.sync.set({book_open:false});
+    } else {
+        // show
+        $('#chat_room').css('width', '70%');
+        $('#chat_input_field').css('width', '70%');
+        $('#control_strip').css('bottom', '75px');
+        $(this).text('📓 Lukk formelbok');
+        chrome.storage.sync.set({book_open:true});
+        $('#book').show();
+    }
+});
+
+
+
+/*
+****
+*       LOADING PREVIOUS INTERACTIONS DATA.
+* ***
+ */
+
+// loading up chat-room.
+chrome.storage.sync.get("chat_room", function (obj) {
+    if (obj.chat_room != null)
+        $('#chat_channel').val(obj.chat_room);
+});
+
+// open or close book?
+chrome.storage.sync.get("book_open", function (obj) {
+    if (obj.book_open != null)
+        console.log(obj.book_open)
+        if (obj.book_open != true) {
+            $("#toggle_book").click();
+        }
+});
+
+
+/*
+****
+*       LISTENER 'N STUFF.
+* ***
+ */
 chrome.storage.onChanged.addListener(function(changes, namespace) {
     for (key in changes) {
         var storageChange = changes[key];
@@ -272,3 +313,7 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
         }
     }
 });
+
+$('input#font-size').change(function() {
+    chrome.storage.sync.set({'font-size': $(this).val() + 'px'});
+})

@@ -1,3 +1,12 @@
+@font-face {
+    font-family: harry-potter;
+    src: url("HARRYP__.eot") /* EOT file for IE */
+}
+@font-face {
+    font-family: harry-potter;
+    src: url("HARRYP__.TTF") /* TTF file for CSS3 browsers */
+}
+
 body {
     font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
     font-size: 100%;
@@ -145,10 +154,11 @@ button:hover {
     cursor: pointer;
 }
 #control_strip {
-    width:100%;
+    width:auto;
     position: relative;
     bottom:75px;
-    margin-left:10px
+    margin-left:auto;
+    margin-right: auto;
 }
 
 select#chat_channel {
