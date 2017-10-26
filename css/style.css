@@ -14,6 +14,13 @@ body {
     color:white;
     overflow: hidden;
 }
+
+img#logo {
+    width:50px;
+    height: auto;
+
+}
+
 div#chat_room{
     width: 70%;
     height: 340px;
@@ -154,10 +161,11 @@ button:hover {
     cursor: pointer;
 }
 #control_strip {
-    width:auto;
+    width: auto;
     position: relative;
-    bottom:75px;
-    margin-left:auto;
+    bottom: 96px;
+    left: 10px;
+    margin-left: auto;
     margin-right: auto;
 }
 

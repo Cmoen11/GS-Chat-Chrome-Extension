@@ -259,14 +259,14 @@ $('#toggle_book').click(function () {
         $('#book').hide();
         $('#chat_room').css('width', '96%');
         $('#chat_input_field').css('width', '97%');
-        $('#control_strip').css('bottom', '56px');
+        $('#control_strip').css('bottom', '77px', 'important');
         $(this).text('📓 Åpne formelbok');
         chrome.storage.sync.set({book_open:false});
     } else {
         // show
         $('#chat_room').css('width', '70%');
         $('#chat_input_field').css('width', '70%');
-        $('#control_strip').css('bottom', '75px');
+        $('#control_strip').css('bottom', '96px', 'important');
         $(this).text('📓 Lukk formelbok');
         chrome.storage.sync.set({book_open:true});
         $('#book').show();

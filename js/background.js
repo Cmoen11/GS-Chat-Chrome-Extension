@@ -68,3 +68,7 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
 });
 
 
+chrome.notifications.onClicked.addListener(function () {
+    var newURL = 'http://galtvortskolen.net/?side=show_pm'
+    chrome.tabs.create({url: newURL});
+});
