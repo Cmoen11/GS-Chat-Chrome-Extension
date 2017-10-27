@@ -1,5 +1,5 @@
-var formler = []
-var username = ""
+var formler = [];
+var username = "";
 
 
 $(function () {
@@ -32,15 +32,18 @@ $(function () {
                     });
                     /* ADD CHAT TO ARRAY AND DISPLAY IT BACK ON CANVAS. */
                     // THIS CODE NEEDS TO BE REFACTORED.
+
                     $('#chat_room p').each(function () {
                         if ($.inArray(this, chat) == -1) {
                             chat.push(this);
                         }
-                    })
+                    });
+
 
                     // is the chat is in reverse as the RPG chat is. Reverse it to follow patterns.
                     if (chat_type.reverse) {
                         chat.reverse();
+
                     }
                     chat = remove_dublicate(chat);
 
@@ -143,7 +146,7 @@ function getChat(chat_type) {
                 button_name: 'rpg_chat',
                 reverse: true,
                 chat_type : 1
-            }
+            };
             break;
         case 'RL':
             return {
@@ -153,7 +156,7 @@ function getChat(chat_type) {
                 button_name: 'rl_chat_submit',
                 reverse: false,
                 chat_type : 1
-            }
+            };
             break;
         case 'Skoleparken':
             return {
@@ -163,7 +166,7 @@ function getChat(chat_type) {
                 button_name: 'park_submit',
                 reverse: false,
                 chat_type : 2
-            }
+            };
             break;
         default :
             // gives back default Storsalen chat
@@ -290,7 +293,7 @@ chrome.storage.sync.get("chat_room", function (obj) {
 // open or close book?
 chrome.storage.sync.get("book_open", function (obj) {
     if (obj.book_open != null)
-        console.log(obj.book_open)
+        console.log(obj.book_open);
         if (obj.book_open != true) {
             $("#toggle_book").click();
         }
@@ -316,4 +319,4 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
 
 $('input#font-size').change(function() {
     chrome.storage.sync.set({'font-size': $(this).val() + 'px'});
-})
+});
