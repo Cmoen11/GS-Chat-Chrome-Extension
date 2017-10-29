@@ -9,11 +9,17 @@
 
 </head>
 <body>
-<div id="uglepost"><a href="http://galtvortskolen.net/?side=show_pm" target='_blank' style="color:white; text-decoration: none">Henter uglepost..</a></div>
+<div id="uglepost"><a href="http://galtvortskolen.net/?side=show_pm" target='_blank' style="color:white; text-decoration: none">Henter uglepost..</a>
+    <span style="float:right">Spillere pålogget(<span id="antSpill"></span>)</span> </div>
 
 <div style="width:780px; position: relative; top:-60px; padding:20px; overflow-x:hidden !important; overflow: hidden;">
-    <h2 style="text-align: center; font-family: harry-potter, Verdana, Arial, sans-serif; font-size:29px;"><img id="logo" src="/img/icon.png"> Chat v1.8: <span id="chat-room-text">Storsalen</span></h2>
-    <div id="book"><h1 style="font-family: harry-potter, Verdana, Arial, sans-serif;">Formell bok</h1> <i>Trykk på formelen for å legge den til i chatten.</i><br><br></div>
+    <h2 style="text-align: center; font-family: harry-potter, Verdana, Arial, sans-serif; font-size:29px;"><img id="logo" src="/img/icon.png"> Chat v2.0: <span id="chat-room-text">Storsalen</span></h2>
+    <div id="book">
+        <h1 style="font-family: harry-potter, Verdana, Arial, sans-serif;">Formelbok</h1>
+        <input placeholder="Søk etter stikkord i formell-listen" id="book_search"/><br><br>
+        <i>Trykk på formelen for å legge den til i chatten.</i>
+        <br><br>
+    </div>
     <div id="chat_room">Du er nødt til å være logget inn for å kunne lese chatten.</div> <!-- this will be the actual chat being displayed. -->
 
     <div id="chat_input_field"><textarea id="textareaid" placeholder="Skriv noe" autofocus></textarea></div>

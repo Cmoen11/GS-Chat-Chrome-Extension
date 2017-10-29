@@ -33,7 +33,7 @@ setInterval(function () {
         }
 
     });
-}, 5000); // sjekker om nye ugler hvert 5'ene sek.
+}, 20000); // sjekker om nye ugler hvert 20'ene sek.
 
 function getCookies(domain, name, callback) {
     chrome.cookies.get({"url": domain, "name": name}, function (cookie) {
@@ -46,8 +46,6 @@ function getCookies(domain, name, callback) {
 /*
 Used to see what sub-domain user may be logged into.. And then set the valid cookie for http:// instead of http://www.
  */
-
-
 function swap_cookies() {
     // first, check if we can get uglepost from http://galtvortskolen.net ( if so, we do not need to do anything ).
     // test the other sub-domain
@@ -73,17 +71,6 @@ function swap_cookies() {
 
 }
 
-
-function getUglepostFromSub(url, callback){
-    $.ajax({
-        type: "GET",
-        url: "http://galtvortskolen.net/",
-        timeout: 10000,
-        success: function (stuff) {
-            return callback(null, stuff);
-        }
-    })
-}
 
 chrome.storage.onChanged.addListener(function (changes, namespace) {
     for (key in changes) {
@@ -122,3 +109,4 @@ chrome.notifications.onClicked.addListener(function () {
     var newURL = 'http://galtvortskolen.net/?side=show_pm';
     chrome.tabs.create({url: newURL});
 });
+
