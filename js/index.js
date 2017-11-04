@@ -86,7 +86,7 @@ function update_uglepost(newRowCount) {
     var uglepost = $(newRowCount).find('.front-top-menu:last-child').text().trim();
     if (uglepost != 'Uglepost(0)') {
         $('#uglepost a').text('📬 ' + uglepost);
-        $('#uglepost a').css("color", "#3098FF");
+        $('a#a_uglepost').css("color", "#3098FF");
     } else {
         $('#uglepost a').text('📭 ' + uglepost);
         $('#uglepost a').css("color", "white");
@@ -124,17 +124,49 @@ $('#chat_input_field').bind('keyup', function (e) {
         postMsg($('#chat_input_field textarea').val());
         $('#chat_input_field textarea').val('');
         $('#textareaid').focus(); // keep the focus
-
+        fetchData(); // update gui
     }
 
 });
 
 
+function getChatType2() {
+    chat = getChat('Skoleparken')
+    regex  = '<a.*<br>'
+
+    $.ajax({
+        type: "GET",
+        url: "http://galtvortskolen.net/?side="+chat.url,
+        timeout: 10000,
+        dataType: "html",
+        contentType: "application/x-www-form-urlencoded",
+        success: function (data) {
+            // if past bedtime warning is present.. accept it.. and try to fetch again.
+            if ($(data).find('input[name="_park_warn"]').val() == 'Jeg er advart.') {
+                var data = {'_park_warn' : 'Jeg er advart.'}
+                $.post('http://galtvortskolen.net/?side=park', data);
+                getChatType2();
+                return;
+            } else { // otherwise.. grab that data :^)
+                $('#chat_room').html($(data).find(chat.chat_id));
+            }
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            console.log("error handled" + errorThrown);
+        }
+
+    });
+
+}
 
 
-
-
-
+$('button#debug_button').click(function () {
+    getChatType2();
+})
+/*
+url: "/chat_skolegaard.php",
+			dataType: "jsonp"
+ */
 
 
 function getChat(chat_type) {
@@ -162,8 +194,8 @@ function getChat(chat_type) {
             break;
         case 'Skoleparken':
             return {
-                url: 'chat',
-                chat_id: '#chat-room-form',
+                url: 'park',
+                chat_id: '.chat-room-form',
                 input_name: 'message',
                 button_name: 'opphold_chat_submit',
                 reverse: false,
@@ -204,6 +236,7 @@ function getChat(chat_type) {
 $('#chat_channel').change(function () {
     $('span#chat-room-text').text($(this).val());
     chrome.storage.sync.set({chat_room:$(this).val()});
+    fetchData();
     $('#textareaid').focus();
 });
 
@@ -231,6 +264,10 @@ $('#spell_book').click(function () {
     addSpellsToSpellbook();
     $('#textareaid').focus();
 });
+
+$('span#players_online').click(function () {
+    alert("yeah");
+})
 
 
 /*
@@ -347,10 +384,15 @@ $('input#book_search').change(function () {
     $('div.formel').remove();
     $.getJSON("spells.json", function (json) {
         var id = 0;
-        formler = [];
-        $('.formel').remove();
+        formler = [];   // empty previous formel list ( used to look it up in a different method.
+        $('.formel').remove();  // remove all previous spells from the book.
+
+        // for each spell, check if it fits criteria given by the user.
         $.each(json, function (key, value) {
-            if (value.desc.indexOf($('input#book_search').val()) !== -1 || $('input#book_search').val() == '') {
+            if (value.desc.toLowerCase().indexOf($('input#book_search').val().toLowerCase()) !== -1
+                || value.spell.toLowerCase().indexOf($('input#book_search').val().toLowerCase()) !== -1
+                || $('input#book_search').val() == '') {
+
                 formler.push(value);
                 $('#book').append('' +
                     '<div data-id=' + id + ' class="formel">' +

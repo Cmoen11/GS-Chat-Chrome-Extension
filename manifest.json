@@ -3,7 +3,7 @@
 
   "name": "GS Chat",
   "description": "En applikasjon som gjør det enklere å rolle på galtvortskolen.net",
-  "version": "2.0.3",
+  "version": "2.1.0",
   "content_security_policy": "script-src 'self' https://ajax.googleapis.com; object-src 'self'",
 
   "browser_action": {
@@ -25,7 +25,6 @@
     "scripts": [
       "js/jquery-3.2.1.min.js",
       "js/background.js"
-    ],
-    "persistent": false
+    ]
   }
 }

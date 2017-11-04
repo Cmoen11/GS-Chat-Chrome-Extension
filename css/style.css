@@ -191,3 +191,12 @@ select#chat_channel {
 option {
     background-color:#3b3b3b;
 }
+
+span#players_online {
+    position: relative;
+    z-index: 999;
+}
+span#players_online:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}

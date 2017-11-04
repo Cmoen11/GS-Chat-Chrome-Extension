@@ -1,6 +1,9 @@
 setInterval(function () {
+    fetch_data()
+}, 10000); // sjekker om nye ugler hvert 20'ene sek.
 
 
+function fetch_data() {
     $.ajax({
         type: "GET",
         url: "http://galtvortskolen.net/",
@@ -11,6 +14,8 @@ setInterval(function () {
 
             // checking unread_uglepost_count
             var unread_uglepost_count = $(data).find('.front-top-menu:last-child').text().trim().replace(/[^0-9]/g, '');
+
+            console.log(unread_uglepost_count);
 
             // changing badge to corresponding unread_uglepost_count
             if (unread_uglepost_count == '') {
@@ -33,7 +38,7 @@ setInterval(function () {
         }
 
     });
-}, 20000); // sjekker om nye ugler hvert 20'ene sek.
+}
 
 function getCookies(domain, name, callback) {
     chrome.cookies.get({"url": domain, "name": name}, function (cookie) {
@@ -42,7 +47,6 @@ function getCookies(domain, name, callback) {
         }
     });
 }
-
 /*
 Used to see what sub-domain user may be logged into.. And then set the valid cookie for http:// instead of http://www.
  */
@@ -89,7 +93,8 @@ chrome.storage.onChanged.addListener(function (changes, namespace) {
                         chrome.notifications.create({
                             type: 'basic',
                             title: 'Ny ugle',
-                            message: 'Ny ugle fra ' + $(data).find('table a span').first().text().replace(/ \(.*\)/, ""),
+                            title: 'Ny ugle fra ' + $(data).find('table a span').first().text().replace(/ \(.*\)/, ""),
+                            message : $(data).find('table a p').first().text(),
                             iconUrl: 'img/icon.png'
                         }, function () {
                             console.log('notification sent.');
