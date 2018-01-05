@@ -8,7 +8,10 @@ function fetch_data() {
         type: "GET",
         url: "http://galtvortskolen.net/",
         timeout: 10000,
-
+        contentType: 'Content-type: text/plain; charset=iso-8859-1',
+        beforeSend: function(jqXHR) {
+            jqXHR.overrideMimeType('text/html;charset=iso-8859-1');
+        },
         success: function (data) {
 
 
@@ -88,13 +91,16 @@ chrome.storage.onChanged.addListener(function (changes, namespace) {
                     type: "GET",
                     url: "http://galtvortskolen.net/?side=show_pm",
                     timeout: 10000,
-
+                    contentType: 'Content-type: text/plain; charset=iso-8859-1',
+                    beforeSend: function(jqXHR) {
+                        jqXHR.overrideMimeType('text/html;charset=iso-8859-1');
+                    },
                     success: function (data) {
                         chrome.notifications.create({
                             type: 'basic',
                             title: 'Ny ugle',
                             title: 'Ny ugle fra ' + $(data).find('table a span').first().text().replace(/ \(.*\)/, ""),
-                            message : $(data).find('table a p').first().text(),
+                            message : $(data).find('table [href^="/?side=read_pm"]').first().text(),
                             iconUrl: 'img/icon.png'
                         }, function () {
                             console.log('notification sent.');
@@ -108,6 +114,22 @@ chrome.storage.onChanged.addListener(function (changes, namespace) {
 
     }
 });
+
+
+function debug_msg() {
+    $.ajax({
+        type: "GET",
+        url: "http://galtvortskolen.net/?side=show_pm",
+        timeout: 10000,
+
+        success: function (data) {
+            var messages = [];
+            $(data).find('table [href^="/?side=read_pm"]').each(function () {
+                console.log(this);
+            })
+        }
+    });
+}
 
 
 chrome.notifications.onClicked.addListener(function () {

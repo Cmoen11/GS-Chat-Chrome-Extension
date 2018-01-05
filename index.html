@@ -9,40 +9,50 @@
 
 </head>
 <body>
-<div id="uglepost"><a id="a_uglepost" href="http://galtvortskolen.net/?side=show_pm" target='_blank' style="color:white; text-decoration: none">Henter uglepost..</a>
-    <span id="players_online" style="float:right">Spillere pålogget(<span id="antSpill"></span>)</span> </div>
-
-<div style="width:780px; position: relative; top:-60px; padding:20px; overflow-x:hidden !important; overflow: hidden;">
-    <h2 style="text-align: center; font-family: harry-potter, Verdana, Arial, sans-serif; font-size:29px;"><img id="logo" src="/img/icon.png"> Chat v2.1: <span id="chat-room-text">Storsalen</span></h2>
-    <div id="book">
-        <h1 style="font-family: harry-potter, Verdana, Arial, sans-serif;">Formelbok</h1>
-        <input placeholder="Søk etter stikkord i formell-listen" id="book_search"/><br><br>
-        <i>Trykk på formelen for å legge den til i chatten.</i>
-        <br><br>
+    <div id="info_message">
+        <div id="info_buttons">
+            <h3 style="text-align: center; font-family: harry-potter, Verdana, Arial, sans-serif; font-size:25px; color:black"> Vil du vite mer?</h3>
+            <button id="contact_owner">Send meg en ugle!</button>
+            <br><br>
+            <button id="news">Les mer om utvidelsen</button>
+        </div>
+        <img src="img/info_message.png"/>
     </div>
-    <div id="chat_room">Du er nødt til å være logget inn for å kunne lese chatten.</div> <!-- this will be the actual chat being displayed. -->
 
-    <div id="chat_input_field"><textarea id="textareaid" placeholder="Skriv noe" autofocus></textarea></div>
-</div>
+    <div id="uglepost"><a id="a_uglepost" href="http://galtvortskolen.net/?side=show_pm" target='_blank' style="color:white; text-decoration: none">Henter uglepost..</a>
+        <span id="players_online" style="float:right">Spillere pålogget(<span id="antSpill"></span>)</span> </div>
 
-<!-- buttons -->
-<div style="width: 780px">
-    <div id="control_strip">
-        <button id="quote_start">« - quote start</button>
-        <button id="quote_end">» - quote slutt</button>
-        <button id="quote_both">«» - begge quotes</button>
-        <button id="toggle_book">📓 Lukk formelbok</button>
-        <select id="chat_channel">
-            <option value="Storsalen" selected>Storsalen</option>
-            <option value="Oppholdsrom" disabled>Oppholdsrom</option>
-            <option value="RPG">RPG</option>
-            <option value="Skoleparken" disabled>Skoleparken</option>
-            <option value="RL">RL</option>
-        </select>
-        <!-- <button id="debug_button">debug_button</button> -->
+    <div style="width:780px; position: relative; top:-40px; padding:0px; overflow-x:hidden !important; overflow: hidden;">
+        <h2 style="text-align: center; font-family: harry-potter, Verdana, Arial, sans-serif; font-size:20px;"><img id="logo" src="/img/icon.png"> Chat v3: <span id="chat-room-text" style="color:darkred">Storsalen</span> | <span id="username">Brukernavn</span></h2>
+        <div id="book">
+            <h1 style="font-family: harry-potter, Verdana, Arial, sans-serif;">Formelbok</h1>
+            <input placeholder="Søk etter stikkord i formell-listen" id="book_search"/><br><br>
+            <i>Trykk på formelen for å legge den til i chatten.</i>
+            <br><br>
+        </div>
+        <div id="chat_room">Du er nødt til å være logget inn for å kunne lese chatten.</div> <!-- this will be the actual chat being displayed. -->
+
+        <div id="chat_input_field"><textarea id="textareaid" placeholder="Skriv noe" autofocus></textarea></div>
     </div>
-</div>
-<script src="js/index.js"></script>
+
+    <!-- buttons -->
+    <div style="width: 780px">
+        <div id="control_strip">
+            <button id="quote_start">« - quote start</button>
+            <button id="quote_end">» - quote slutt</button>
+            <button id="quote_both">«» - begge quotes</button>
+            <button id="toggle_book">📓 Lukk formelbok</button>
+            <select id="chat_channel">
+                <option value="Storsalen" selected>Storsalen</option>
+                <option value="Oppholdsrom" disabled>Oppholdsrom</option>
+                <option value="RPG">RPG</option>
+                <option value="Skoleparken" disabled>Skoleparken</option>
+                <option value="RL">RL</option>
+            </select>
+            <div id="info_icon"><img src="img/info_icon.png" height="138" width="118"/></div>
+        </div>
+    </div>
+    <script src="js/index.js"></script>
 
 </body>
 </html>

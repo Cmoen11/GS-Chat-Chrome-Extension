@@ -1,3 +1,45 @@
+div#info_icon {
+    float: right;
+    height: 50px;
+    position: relative;
+    right:25px;
+    bottom:-5px;
+    cursor: pointer;
+
+}
+div #info_icon img {
+    height: 100%;
+    width: auto;
+    cursor: pointer;
+}
+div#info_message {
+    position: absolute;
+    z-index: 9999;
+    top:200px;
+    width: 600px;
+    left:200px;
+    display: none;
+    margin-left:5000px;
+
+}
+div#info_message img {
+    width:100%;
+    height: auto;
+}
+div#info_message #info_buttons{
+    position: absolute;
+    background-color: rgba(255, 255, 255, 1);
+    top:170px;
+    left:50px;
+    width:220px;
+    padding:5px;
+    border-radius: 20px;
+    border: 1px solid black;
+}
+div#info_message #info_buttons button {
+    width: 90%;
+}
+
 @font-face {
     font-family: harry-potter;
     src: url("HARRYP__.eot") /* EOT file for IE */
@@ -30,6 +72,7 @@ div#chat_room{
     float: left;
     display: flex;
     flex-direction: column-reverse;
+    font-size: 9px !important;
 }
 div#chat_room a {
     text-decoration: none;
@@ -43,15 +86,16 @@ div#chat_input_field {
     width:70%;
     float:left;
 }
-div#book{
-    width:28%;
-    float:right;
+div#book {
+    width: 29%;
+    float: right;
     position: relative;
-    top:-25px;
+    top: -7px;
     height: 480px;
     font-size: 12px;
     overflow-y: scroll;
-
+    overflow-x: visible;
+    right: -10px;
 }
 div#book .formel {
     margin-top:10px;
@@ -95,7 +139,8 @@ textarea {
     max-height:85px;
     margin-top:15px;
     width: 96%;
-    max-width: 96%
+    max-width: 96%;
+    font-size: 10px;
 }
 textarea::selection {
 
@@ -173,8 +218,8 @@ button:hover {
 #control_strip {
     width: auto;
     position: relative;
-    bottom: 96px;
-    left: 10px;
+    bottom: 50px;
+    left: 0px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -199,4 +244,58 @@ span#players_online {
 span#players_online:hover {
     text-decoration: underline;
     cursor: pointer;
+}
+
+/* Outer */
+.popup {
+    width:100%;
+    height:100%;
+    display:none;
+    position:fixed;
+    top:0px;
+    left:0px;
+    background:rgba(0,0,0,0.75);
+}
+
+/* Inner */
+.popup-inner {
+    max-width:700px;
+    width:90%;
+    padding:40px;
+    position:absolute;
+    top:50%;
+    left:50%;
+    -webkit-transform:translate(-50%, -50%);
+    transform:translate(-50%, -50%);
+    box-shadow:0px 2px 6px rgba(0,0,0,1);
+    border-radius:3px;
+    background:#fff;
+}
+
+/* Close Button */
+.popup-close {
+    width:30px;
+    height:30px;
+    padding-top:4px;
+    display:inline-block;
+    position:absolute;
+    top:0px;
+    right:0px;
+    transition:ease 0.25s all;
+    -webkit-transform:translate(50%, -50%);
+    transform:translate(50%, -50%);
+    border-radius:1000px;
+    background:rgba(0,0,0,0.8);
+    font-family:Arial, Sans-Serif;
+    font-size:20px;
+    text-align:center;
+    line-height:100%;
+    color:#fff;
+}
+
+.popup-close:hover {
+    -webkit-transform:translate(50%, -50%) rotate(180deg);
+    transform:translate(50%, -50%) rotate(180deg);
+    background:rgba(0,0,0,1);
+    text-decoration:none;
 }

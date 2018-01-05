@@ -3,6 +3,20 @@ var username = "";
 var get_online_count = 0;
 var house = 0;
 $(function () {
+    var first_run = false;
+    if (!localStorage['ran_before']) {
+        first_run = true;
+        localStorage['ran_before'] = '1';
+    }
+
+    if (first_run) {
+        $('#info_message').stop().show(function () {
+            $('#info_message').animate({ marginLeft: "0%"} , 500);
+            setTimeout(info_hide_click, 2000)
+        })
+        setTimeout(info_hide_click, 2000)
+    }
+
     addSpellsToSpellbook();
     fetchData();
     setInterval(function () {
@@ -14,10 +28,15 @@ $(function () {
 
 function fetchData() {
     chat_type = getChat($('#chat_channel').val());
+
     $.ajax({
         type: "GET",
         url: "http://galtvortskolen.net/?side=" + chat_type.url,
         timeout: 10000,
+        contentType: 'Content-type: text/plain; charset=iso-8859-1',
+        beforeSend: function(jqXHR) {
+            jqXHR.overrideMimeType('text/html;charset=iso-8859-1');
+        },
 
         success: function (newRowCount) {
             try {
@@ -29,6 +48,8 @@ function fetchData() {
                     return $(this).attr('href');
                 }).get()[3].trim().replace(/[^0-9]/g, '');
 
+                username = $(newRowCount).find('div#header-userpanel [href^="/?side=profiles&id="]').text();
+                $('span#username').text(username);
 
                 // get online count and update gui.
                 var get_online_count = $(newRowCount).find('[href="/?side=online"]').text().trim().replace(/[^0-9]/g, '');
@@ -112,6 +133,10 @@ $('#chat_input_field').bind('keyup', function (e) {
             url: "http://galtvortskolen.net/?side=" + chat_type.url,
             processData: false,
             data: data,
+            contentType: 'Content-type: text/plain; charset=iso-8859-1',
+            beforeSend: function(jqXHR) {
+                jqXHR.overrideMimeType('text/html;charset=iso-8859-1');
+            },
             success: function (data) {
             },
             dataType: "html",
@@ -138,8 +163,13 @@ function getChatType2() {
         type: "GET",
         url: "http://galtvortskolen.net/?side="+chat.url,
         timeout: 10000,
+
         dataType: "html",
         contentType: "application/x-www-form-urlencoded",
+        contentType: 'Content-type: text/plain; charset=iso-8859-1',
+        beforeSend: function(jqXHR) {
+            jqXHR.overrideMimeType('text/html;charset=iso-8859-1');
+        },
         success: function (data) {
             // if past bedtime warning is present.. accept it.. and try to fetch again.
             if ($(data).find('input[name="_park_warn"]').val() == 'Jeg er advart.') {
@@ -161,7 +191,17 @@ function getChatType2() {
 
 
 $('button#debug_button').click(function () {
-    getChatType2();
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'http://galtvortskolen.net');
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            alert(xhr.responseText);
+        }
+        else {
+            alert('Request failed.  Returned status of ' + xhr.status);
+        }
+    };
+    xhr.send();
 })
 /*
 url: "/chat_skolegaard.php",
@@ -266,7 +306,8 @@ $('#spell_book').click(function () {
 });
 
 $('span#players_online').click(function () {
-    alert("yeah");
+    var newURL = 'http://galtvortskolen.net/?side=online';
+    chrome.tabs.create({url: newURL});
 })
 
 
@@ -294,7 +335,10 @@ function addSpellsToSpellbook() {
             formler.push(value);
             $('#book').append('' +
                 '<div data-id=' + id + ' class="formel">' +
-                '<strong>' + value.spell + ' </strong>' +
+                '<div style="width:100%; text-align: center; padding-top:5px; padding-bottom:5px; background-color:darkred;' +
+                'margin-bottom:5px; border-radius: 5px;">' +
+                    '<strong>' + value.spell + '</strong>' +
+                '</div>' +
                 '<span>' + value.desc + '</span>' +
                 '</div>' +
                 '');
@@ -311,14 +355,14 @@ $('#toggle_book').click(function () {
         $('#book').hide();
         $('#chat_room').css('width', '96%');
         $('#chat_input_field').css('width', '97%');
-        $('#control_strip').css('bottom', '77px', 'important');
+        $('#control_strip').css('bottom', '30px', 'important');
         $(this).text('📓 Åpne formelbok');
         chrome.storage.sync.set({book_open:false});
     } else {
         // show
         $('#chat_room').css('width', '70%');
         $('#chat_input_field').css('width', '70%');
-        $('#control_strip').css('bottom', '96px', 'important');
+        $('#control_strip').css('bottom', '50px', 'important');
         $(this).text('📓 Lukk formelbok');
         chrome.storage.sync.set({book_open:true});
         $('#book').show();
@@ -396,7 +440,10 @@ $('input#book_search').change(function () {
                 formler.push(value);
                 $('#book').append('' +
                     '<div data-id=' + id + ' class="formel">' +
-                    '<strong>' + value.spell + ' </strong>' +
+                    '<div style="width:100%; text-align: center; padding-top:5px; padding-bottom:5px; background-color:darkred;' +
+                    'margin-bottom:5px; border-radius: 5px;">' +
+                    '<strong>' + value.spell + '</strong>' +
+                    '</div>' +
                     '<span>' + value.desc + '</span>' +
                     '</div>' +
                     '');
@@ -406,3 +453,62 @@ $('input#book_search').change(function () {
     });
 
 })
+
+
+function debug_msg() {
+    $.ajax({
+        type: "GET",
+        url: "http://galtvortskolen.net/?side=show_pm",
+        timeout: 10000,
+
+        success: function (data) {
+            var messages = [];
+            $(data).find('table [href^="/?side=read_pm"]').each(function () {
+                console.log(this);
+            })
+        }
+    });
+}
+function get_current_tab() {
+    var tablink;
+    chrome.tabs.getSelected(null,function(tab) {
+        tablink = tab.url;
+        console.log(tab.url);
+    });
+}
+
+
+$('#info_icon').hover(function() {
+    $(this).stop().animate({ bottom: '-1' }, 'fast');
+}, function() {
+    $(this).stop().animate({ bottom: '-5'}, 'fast');
+});
+
+function info_hide_click() {
+    $('body').click(function () {
+
+        if ($('#info_message').is(':visible')) {
+            $('#info_message').animate({ marginLeft: "100%"} , 500);
+        }
+
+
+    })
+}
+
+$('#info_icon').click(function () {
+    $('body').unbind("click");
+    $('#info_message').stop().show(function () {
+        $('#info_message').animate({ marginLeft: "0%"} , 500);
+        setTimeout(info_hide_click, 2000)
+    })
+})
+
+$('button#contact_owner').click(function () {
+    var newURL = 'http://galtvortskolen.net/?side=profiles&id=59751';
+    chrome.tabs.create({url: newURL});
+});
+
+$('button#news').click(function () {
+    var newURL = 'http://www.galtvortskolen.net/?side=comments&id=881';
+    chrome.tabs.create({url: newURL});
+});
