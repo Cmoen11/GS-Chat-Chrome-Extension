@@ -1,12 +1,26 @@
+var userid = -1;
+var latest_message = {
+    'author': '',
+    'submission': ''
+}
+
+
 setInterval(function () {
     fetch_data()
 }, 10000); // sjekker om nye ugler hvert 20'ene sek.
 
 
 function fetch_data() {
+
+    var url = 'http://galtvortskolen.net/';
+
+    if (userid != -1) {
+        url = url + '?side=profiles&id='+userid;
+    }
+
     $.ajax({
         type: "GET",
-        url: "http://galtvortskolen.net/",
+        url: url,
         timeout: 10000,
         contentType: 'Content-type: text/plain; charset=iso-8859-1',
         beforeSend: function(jqXHR) {
@@ -14,6 +28,9 @@ function fetch_data() {
         },
         success: function (data) {
 
+            userid = $(data).find('#header-userpanel a:first-child').attr('href').trim().replace(/[^0-9]/g, '');
+            console.log("userid:" + userid);
+            if (userid > 10) getLatestGestbookSubmission(data);
 
             // checking unread_uglepost_count
             var unread_uglepost_count = $(data).find('.front-top-menu:last-child').text().trim().replace(/[^0-9]/g, '');
@@ -41,6 +58,31 @@ function fetch_data() {
         }
 
     });
+}
+
+
+function getLatestGestbookSubmission(data) {
+    var latestSubmitter = $(data).find('[name="gjestebok_read"]').next().next().text();
+    var latestMessage = $(data).find('[name="gjestebok_read"]').next().next().next().text();
+    if (latestMessage == "[Slett]") {
+        latestMessage = $(data).find('[name="gjestebok_read"]').next().next().next().next().text();
+    }
+
+    if (latestMessage != latest_message.submission) {
+        latest_message.author = latestSubmitter;
+        latest_message.submission = latestMessage;
+
+        chrome.notifications.create({
+            type: 'basic',
+            title: 'Nytt innlegg i gjesteboka fra ' + latest_message.author,
+            message : latest_message.submission,
+            iconUrl: 'img/icon.png'
+        }, function () {
+            console.log('notification sent.');
+        })
+
+    }
+
 }
 
 function getCookies(domain, name, callback) {

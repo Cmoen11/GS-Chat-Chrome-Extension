@@ -1,3 +1,49 @@
+
+/**
+    INBOX
+ */
+
+#msg_body {
+    margin-top:5px;
+    margin-right:5px;
+    padding:10px;
+    border-radius: 5px;
+    background-color: #1b1b1b;
+    border: 1px dotted #3b3b3b;
+    font-size: 12px;
+}
+
+div#inbox {
+     display: none;
+    position: absolute;
+    width:550px;
+    width:800px;
+    height: 460px;
+    left:0px;
+    z-index: 999;
+    background-color:#101010;
+    overflow: scroll;
+
+}
+
+div#inbox a:link, div#inbox a:visited {
+    color:white;
+    text-decoration: none;
+}
+
+div#message {
+    display: none;
+    position: absolute;
+    width:550px;
+    width:800px;
+    height: 460px;
+    left:0px;
+    z-index: 999;
+    background-color:#101010;
+
+}
+
+
 div#info_icon {
     float: right;
     height: 50px;
@@ -7,6 +53,10 @@ div#info_icon {
     cursor: pointer;
 
 }
+::selection {
+    background: red; /* WebKit/Blink Browsers */
+}
+
 div #info_icon img {
     height: 100%;
     width: auto;
@@ -122,7 +172,7 @@ div#chat_room p {
     font-size: 12px;
 }
 div#chat_room p:nth-child(odd) {
-    background-color:#141414;
+    background-color:#101010;
 }
 div#chat_room .mod p {
     background-color:forestgreen;

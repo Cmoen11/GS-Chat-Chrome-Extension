@@ -32,6 +32,30 @@
         </div>
         <div id="chat_room">Du er nødt til å være logget inn for å kunne lese chatten.</div> <!-- this will be the actual chat being displayed. -->
 
+        <div id="message"> <!-- for when viewing a message -->
+            <button id="go_back_to_inbox">« - Gå tilbake til inbox</button>
+            <div id="content_message" style="margin-top:10px; height: 280px; overflow: scroll">
+                <strong style="font-size: 12px"><l></l> skriver:</strong>
+                <div id="msg_body">
+                </div>
+                <br>
+
+            </div>
+            <strong style="font-size: 12px">Send et svar:</strong><br>
+            <textarea id="answer_pm" style="width:80%; float:left;" placeholder="Skriv noe" autofocus></textarea>
+            <button id="send_pm" style="height: 100px; width:15%; margin-top: 12px; float:right">Send svar</button>
+        </div>
+        <div id="inbox"> <!-- for when viewing inbox -->
+            <button id="go_back_to_chat">« - Gå tilbake til chat</button>
+
+            <!-- display every message titled. -->
+            <div id="content_inbox" style="margin-top:10px;">
+                <table></table>
+                <!--rendered by javascript -->
+            </div>
+
+
+        </div>
         <div id="chat_input_field"><textarea id="textareaid" placeholder="Skriv noe" autofocus></textarea></div>
     </div>
 
@@ -40,7 +64,7 @@
         <div id="control_strip">
             <button id="quote_start">« - quote start</button>
             <button id="quote_end">» - quote slutt</button>
-            <button id="quote_both">«» - begge quotes</button>
+            <button id="quote_both">Kopier chat</button>
             <button id="toggle_book">📓 Lukk formelbok</button>
             <select id="chat_channel">
                 <option value="Storsalen" selected>Storsalen</option>

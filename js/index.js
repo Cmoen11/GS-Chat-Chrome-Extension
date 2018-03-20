@@ -69,6 +69,10 @@ function fetchData() {
                 // THIS CODE NEEDS TO BE REFACTORED.
 
                 $('#chat_room p').each(function () {
+                    if ($(this).find('span').text() == "Chrystean Dunston Applefield") {
+                        var name = $(this).find('span').text()
+                        $(this).find('span').text("🌟 "+name)
+                    }
                     chat.push(this);
                 });
 
@@ -477,6 +481,125 @@ function get_current_tab() {
     });
 }
 
+function get_every_message() {
+
+    $('#inbox').show();
+    $('#content_inbox table').empty();
+    function getNumbers(inputString){
+        var regex=/\d+\.\d+|\.\d+|\d+/g,
+            results = [],
+            n;
+
+        while(n = regex.exec(inputString)) {
+            results.push(parseFloat(n[0]));
+        }
+
+        return results;
+    }
+
+
+
+    $.ajax({
+        type: "GET",
+        url: "http://galtvortskolen.net/?side=show_pm",
+        timeout: 10000,
+        contentType: 'Content-type: text/plain; charset=iso-8859-1',
+        beforeSend: function(jqXHR) {
+            jqXHR.overrideMimeType('text/html;charset=iso-8859-1');
+        },
+        success: function (data) {
+            $(data).find('table tr').each(function () {
+
+                // remove premium features, as it is not a feature on this extension.
+                var user_premium = ($(this).find('td').length == 5)
+                if (user_premium) {
+                    $(this).find('td').first().remove();
+                }
+
+                // set the correct path for unread/read img
+                $(this).find('img').attr('src', 'http://galtvortskolen.net/' + $(this).find('img').attr('src'))
+
+
+                if ($(this).find('a:nth-child(1)').text().length > 1) {
+                    var link = $(this).find('a:nth-child(1)');
+
+
+                    $(link).attr('data-msg_id', getNumbers(link.attr('href')));
+                    $(link).addClass('inbox_item')
+
+
+                }
+
+
+
+                // append the data into the screen.
+                $('#content_inbox table').append('' +
+                    '<tr>' + $(this).html() + '</tr>')
+            });
+
+            $('a.inbox_item').on('click', function (e) {
+                e.preventDefault();
+                var emne = $(this).text();
+                open_msg($(this).data('msg_id'), emne);
+
+            })
+
+            function open_msg(id, emne) {
+                    $.ajax({
+                        type: "GET",
+                        url: "http://galtvortskolen.net/?side=read_pm&id="+id,
+                        timeout: 10000,
+                        contentType: 'Content-type: text/plain; charset=iso-8859-1',
+                        beforeSend: function(jqXHR) {
+                            jqXHR.overrideMimeType('text/html;charset=iso-8859-1');
+                        },
+                        success: function (data) {
+
+                            $('#content_message #msg_body').html($(data).find('#middle-main p').html())
+                            $('#content_message l').text($(data).find('#middle-main a').first().text())
+                            $('#inbox').hide();
+                            $('#message').show();
+                            $('#message button').attr('data-emne', emne);
+                            $('#message button').attr('data-id', id)
+                            $('#message button').attr('data-username', $(data).find('#middle-main a').first().text());
+                        }
+                    });
+                }
+
+
+
+        }
+    });
+
+    $('#send_pm').click(function () {
+        function send_pm(to, subject, msg) {
+            var data = chat_type.input_name + "=" + msg.trim() + "&" + chat_type.button_name + "=" + $('input[name="' + chat_type.button_name + '"]').val();
+            var data = "pm_submit=Send&subject="+subject+"&text="+msg+"&to="+to
+            $.post({
+                url: 'http://galtvortskolen.net/?side=send_pm',
+                data: data,
+            });
+            return true;
+        }
+
+
+
+        var msg = $('#answer_pm').val();
+        msg = escape(msg).replace(/\+/g, "%2B");
+        var subject = $(this).data('emne');
+        var username = $(this).data('username').replace(/ \(.*\)/g, '');
+        send_pm(username, subject, msg)
+        $('#answer_pm').val("");
+        $('#message').hide();
+        get_every_message();
+
+
+
+    })
+}
+
+
+
 
 $('#info_icon').hover(function() {
     $(this).stop().animate({ bottom: '-1' }, 'fast');
@@ -512,3 +635,32 @@ $('button#news').click(function () {
     var newURL = 'http://www.galtvortskolen.net/?side=comments&id=881';
     chrome.tabs.create({url: newURL});
 });
+
+$('#go_back_to_inbox').click(function () {
+    $('#message').hide();
+    get_every_message();
+})
+
+$('#go_back_to_chat').click(function () {
+    $('#inbox').hide();
+    unbind_inbox_stuff();
+})
+
+$('#a_uglepost').click(function (e) {
+    e.preventDefault();
+    unbind_inbox_stuff()
+    if ($('#inbox').is(':visible')) {
+        $('#message').hide();
+        $('#inbox').hide();
+    }else {
+
+        get_every_message();
+    }
+})
+
+
+function unbind_inbox_stuff() {
+    $('#send_pm').unbind();
+    $('a.inbox_item').unbind();
+
+}
